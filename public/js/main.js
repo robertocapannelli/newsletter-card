@@ -22,6 +22,12 @@ function resetCookie(cname) {
 }
 
 $(document).ready(function () {
+
+    var container = $('.cf7nc-card-container');
+    var height = container.height();
+
+    //TODO dynamic height container to avoid problem with form with more than one field
+
     //resetCookie('is_card_hidden');
     console.log(document.cookie);
     //Check if the cookie is set, if not show the newsletter card
@@ -34,6 +40,7 @@ $(document).ready(function () {
             var curScrollPos = jQuery(this).scrollTop();
             if (curScrollPos > scrollPos) {
                 $('.cf7nc-card-container').addClass('visible');
+                console.log('scrolling');
             } else {
                 return
             }
@@ -42,7 +49,7 @@ $(document).ready(function () {
     }
     //On click close card and set cookie to hide the card in next 7 days
     $(' .close-button').click(function () {
-        $('.cf7nc-card-container').removeClass('visible');
+        container.removeClass('visible');
         setCookie('is_card_hidden', 'true', 7);
     });
 });

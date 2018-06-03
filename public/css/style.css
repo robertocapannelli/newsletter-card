@@ -1,7 +1,7 @@
-.cf7nc-card-container{
+.cf7nc-card-container {
     position: fixed;
     right: 0;
-    bottom:-300px;
+    bottom: -300px;
     background: white;
     padding: 15px;
     border: 1px solid darkgray;
@@ -12,9 +12,9 @@
     transition: all 400ms ease;
 }
 
-.cf7nc-card-container.visible{
+.cf7nc-card-container.visible {
     right: 0;
-    bottom:0;
+    bottom: 0;
     -webkit-transition: all 400ms ease;
     -moz-transition: all 400ms ease;
     -ms-transition: all 400ms ease;
@@ -22,11 +22,11 @@
     transition: all 400ms ease;
 }
 
-.cf7nc-card-container .cf7nc-card-wrapper{
+.cf7nc-card-container .cf7nc-card-wrapper {
     position: relative;
 }
 
-.cf7nc-card-container .cf7nc-card-wrapper .close-button{
+.cf7nc-card-container .cf7nc-card-wrapper .close-button {
     position: absolute;
     top: 0;
     right: 0;
