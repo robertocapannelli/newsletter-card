@@ -9,6 +9,16 @@ Author URI: https://walkap.com
 Text Domain: walkap_cf7nc
 */
 
+define( 'PLUGIN_NAME', 'CF7 newsletter card' );
+
+define( 'CF7NC_VERSION', '1.0' );
+
+define('CF7NC_PLUGIN_DIR', plugin_dir_path( __FILE__ ));
+
+define('CF7NC_PUBLIC_STYLE', plugin_dir_url(__FILE__) . 'public/css/style.css');
+
+define('CF7NC_PUBLIC_SCRIPT', plugin_dir_url(__FILE__) . 'public/js/main.js');
+
 /**
  *
  * Check if Contect Form 7 exists and is active
@@ -36,3 +46,30 @@ function walkap_cf7nc_error() {
 add_action( 'admin_notices', 'walkap_cf7nc_error' );
 
 require_once plugin_dir_path(__FILE__) . '/settings.php';
+
+
+/**
+ * Enqueue scripts and styles
+ */
+function walkap_cf7nc_scripts() {
+	wp_enqueue_style('public_style', CF7NC_PUBLIC_STYLE, null, '1.0.0');
+	wp_enqueue_script( 'script-name', CF7NC_PUBLIC_SCRIPT, array('jquery'), '1.0.0', true );
+}
+add_action( 'wp_enqueue_scripts', 'walkap_cf7nc_scripts' );
+
+/**
+ * Add content to the front-end
+ */
+function walkap_cf7nc_add_content(){
+	$shortcode = get_option('walkap_cf7nc_shortcode');
+	//needed to invoke is_plugin_active
+	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+	$is_active = is_plugin_active(CF7NC_PLUGIN_DIR . '/newsletter-card.php');
+	//check if a CF7 shortcode is provided and if the plugin is active
+	if(!($shortcode || $is_active)){
+		return;
+	}
+	require_once plugin_dir_path(__FILE__) . '/public/card.php';
+}
+
+add_action('wp_footer', 'walkap_cf7nc_add_content' );
