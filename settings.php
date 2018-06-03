@@ -1,89 +1,56 @@
 <?php
 
+define( 'OPTION_GROUP', 'walkap_cf7nc_group' );
+
+define( 'SECTION_ID', 'walkap_cf7nc_section' );
+
+define( 'SECTION_TITLE', 'Settings' );
+
+define( 'PAGE', 'cf7-newsletter-card' );
+
+define( 'FIELD_CB', 'walkap_cf7nc_settings_field_callback' );
+
 /**
- *
  * Add the CF7 newsletter card sub menu to the CF7 main menu
- *
  */
 function walkap_cf7nc_options_page() {
+	//Check if CF7 is installed
 	if ( ! is_plugin_active( 'contact-form-7/wp-contact-form-7.php' ) ) {
 		return;
 	}
+	//Add submenu under CF7 menu
 	add_submenu_page(
 		'wpcf7',
-		'CF7 newsletter card',
-		'Newsletter card',
+		PLUGIN_NAME,
+		PLUGIN_NAME,
 		'manage_options',
-		'cf7-newsletter-card',
+		PAGE,
 		'walkap_cf7nc_options_page_html'
 	);
 }
+
 add_action( 'admin_menu', 'walkap_cf7nc_options_page' );
 
+/**
+ * Callback function for add_submenu
+ */
 function walkap_cf7nc_options_page_html() {
-	require plugin_dir_path(__FILE__) . '/admin/view.php';
-}
-
-
-$options = [
-	[
-		'option_group'     => 'walkap_cf7nc_group',
-		'option_name'      => 'walkap_cf7nc_shortcode',
-		'type'             => 'text',
-		'section_id'       => 'walkap_cf7nc_section',
-		'section_title'    => 'CF7 Newsletter Card Section',
-		'section_callback' => 'walkap_cf7nc_settings_section_callback',
-		'page'             => 'cf7-newsletter-card',
-		'field_id'         => 'walkap_cf7nc_settings_field',
-		'field_title'      => 'CF7 Newsletter Card Setting',
-		'field_callback'   => 'walkap_cf7nc_settings_field_callback',
-		'field_section'    => 'walkap_cf7nc_settings_section',
-		'hint'             => 'Type here your CF7 shortcode'
-	]
-];
-
-function walkap_cf7nc_settings_init() {
-
-	global $options;
-
-	add_settings_section(
-		'walkap_cf7nc_settings_section',
-		'CF7 Newsletter Card Section',
-		null,
-		'cf7-newsletter-card'
-	);
-
-	if ( is_array( $options ) || is_object( $options ) ) {
-		foreach ( $options as $option ) {
-
-			register_setting(
-				$option['option_group'],
-				$option['option_name']
-			);
-
-			add_settings_field(
-				$option['field_id'],
-				$option['field_title'],
-				$option['field_callback'],
-				$option['page'],
-				$option['field_section'],
-				[
-					'type' => $option['type'],
-					'name' => $option['option_name'],
-					'hint' => $option['hint']
-				]
-			);
-		}
-
+	if ( ! current_user_can( 'manage_options' ) ) {
+		return;
 	}
-}
-add_action( 'admin_init', 'walkap_cf7nc_settings_init' );
 
-function walkap_cf7nc_settings_field_callback( $args ) {
-	$setting = get_option( 'walkap_cf7nc_shortcode' );
-	?>
-	<input type="<?= esc_attr( $args['type'] ); ?>" name="<?= esc_attr( $args['name'] ); ?>"
-	       value="<?= isset( $setting ) ? esc_attr( $setting ) : ''; ?>">
-	<p class="description"><?= esc_attr__($args['hint']); ?></p>
-	<?php
+	// check if the user have submitted the settings
+	// wordpress will add the "settings-updated" $_GET parameter to the url
+	if ( isset( $_GET['settings-updated'] ) ) {
+		// add settings saved message with the class of "updated"
+		add_settings_error( 'walkap_cf7nc_messages', 'walkap_cf7nc_message', __( 'Settings Saved', 'walkap_cf7nc' ), 'updated' );
+	}
+
+	// show error/update messages
+	settings_errors( 'walkap_cf7nc_messages' );
+
+	//Require view.php file that contains admin view
+	require_once( CF7NC_PLUGIN_DIR . '/admin/view.php' );
 }
+
+require_once( CF7NC_PLUGIN_DIR . '/admin/settings.php' );
