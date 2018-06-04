@@ -18,7 +18,7 @@ $options = [
 		'field_id'    => 'shortcode',
 		'field_title' => 'Shortcode *',
 		'is_required' => true,
-		'hint'        => 'Type here your CF7 shortcode'
+		'hint'        => 'Type here your CF7 shortcode, make sure your form has just an email field to have a cooler newsletter card'
 	],
 	[
 		'option_name' => 'walkap_cf7nc_title',
@@ -26,7 +26,7 @@ $options = [
 		'field_id'    => 'title',
 		'field_title' => 'Card Title',
 		'is_required' => false,
-		'hint'        => 'Type here the title you want to display in the front-end'
+		'hint'        => 'Type here the title you want to display in the front-end, just above the description and the form field'
 	],
 	[
 		'option_name' => 'walkap_cf7nc_description',
@@ -34,7 +34,7 @@ $options = [
 		'field_id'    => 'description',
 		'field_title' => 'Card description',
 		'is_required' => false,
-		'hint'        => 'Type here the description you want to display in the front-end'
+		'hint'        => 'Type here the description you want to display in the front-end, between the title and the form field'
 	]
 ];
 
