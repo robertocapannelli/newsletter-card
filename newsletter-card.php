@@ -48,43 +48,6 @@ add_action( 'admin_notices', 'walkap_cf7nc_error' );
 
 require_once plugin_dir_path( __FILE__ ) . '/settings.php';
 
-
-/**
- * Enqueue scripts and styles
- */
-function walkap_cf7nc_scripts() {
-
-	//unset($_COOKIE['is_card_hidden']);
-
-	if(!isset($_COOKIE['is_card_hidden'])){
-		wp_enqueue_style( 'public_style', CF7NC_PUBLIC_STYLE, null, '1.0.0' );
-		wp_enqueue_script( 'script-name', CF7NC_PUBLIC_SCRIPT, array( 'jquery' ), '1.0.0', true );
-	}
-}
-
-add_action( 'wp_enqueue_scripts', 'walkap_cf7nc_scripts' );
-
-/**
- * Add content to the front-end
- */
-function walkap_cf7nc_add_content() {
-
-	$shortcode = get_option( 'walkap_cf7nc_shortcode' );
-
-	//needed to invoke is_plugin_active
-	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-
-	$is_active = is_plugin_active( CF7NC_PLUGIN_DIR . '/newsletter-card.php' );
-
-	//check if a CF7 shortcode is provided and if the plugin is active
-	if ( ! ( $shortcode || $is_active ) || isset($_COOKIE['is_card_hidden'] ) ) {
-		return;
-	}
-	require_once plugin_dir_path( __FILE__ ) . '/public/card.php';
-}
-
-add_action( 'wp_footer', 'walkap_cf7nc_add_content' );
-
 //TODO add position left or right
 //TODO add style for background and color font
 //TODO add custom css field
