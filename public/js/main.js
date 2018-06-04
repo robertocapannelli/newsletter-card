@@ -66,6 +66,7 @@ function openCard() {
 }
 
 $(document).ready(function () {
+    //resetCookie('is_card_hidden');
     console.log(document.cookie);
     init();
     openCard();
