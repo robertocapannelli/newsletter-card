@@ -2,25 +2,28 @@
 //these are option to cycle for admin form
 $options = [
 	[
-		'option_name'    => 'walkap_cf7nc_shortcode',
-		'type'           => 'text',
-		'field_id'       => 'shortcode',
-		'field_title'    => 'Shortcode',
-		'hint'           => 'Type here your CF7 shortcode'
+		'option_name' => 'walkap_cf7nc_shortcode',
+		'type'        => 'text',
+		'field_id'    => 'shortcode',
+		'field_title' => 'Shortcode *',
+		'is_required' => true,
+		'hint'        => 'Type here your CF7 shortcode'
 	],
 	[
-		'option_name'    => 'walkap_cf7nc_title',
-		'type'           => 'text',
-		'field_id'       => 'title',
-		'field_title'    => 'Card Title',
-		'hint'           => 'Type here the title you want to display in the front-end'
+		'option_name' => 'walkap_cf7nc_title',
+		'type'        => 'text',
+		'field_id'    => 'title',
+		'field_title' => 'Card Title',
+		'is_required' => false,
+		'hint'        => 'Type here the title you want to display in the front-end'
 	],
 	[
-		'option_name'    => 'walkap_cf7nc_description',
-		'type'           => 'textarea',
-		'field_id'       => 'description',
-		'field_title'    => 'Card description',
-		'hint'           => 'Type here the description you want to display in the front-end'
+		'option_name' => 'walkap_cf7nc_description',
+		'type'        => 'textarea',
+		'field_id'    => 'description',
+		'field_title' => 'Card description',
+		'is_required' => false,
+		'hint'        => 'Type here the description you want to display in the front-end'
 	]
 ];
 
@@ -58,7 +61,8 @@ function walkap_cf7nc_settings_init() {
 				[
 					'type'        => $option['type'],
 					'option_name' => $option['option_name'],
-					'hint'        => $option['hint']
+					'hint'        => $option['hint'],
+					'is_required' => $option['is_required']
 				]
 			);
 		}
@@ -79,15 +83,22 @@ function walkap_cf7nc_settings_field_callback( $args ) {
 	$option_name = esc_attr( $args['option_name'] );
 	$hint        = esc_html( $args['hint'] );
 	$value       = isset( $setting ) ? esc_attr( $setting ) : '';
+	$required = ($args['is_required']) ? 'required' : '';
 
 	$text     = <<<HTML
-        <input type="$type" name="$option_name" value="$value">
+        <input type="$type" name="$option_name" value="$value" $required>
 HTML;
 	$textarea = <<<HTML
-        <textarea name="$option_name">$value</textarea>
+        <textarea name="$option_name" $required>$value</textarea>
 HTML;
 
 	switch ( $args['type'] ) {
+        case 'date':
+        case 'color':
+        case 'checkbox':
+        case 'password':
+        case 'numebr':
+        case 'email':
 		case 'text':
 			echo $text;
 			break;
@@ -96,6 +107,6 @@ HTML;
 			break;
 	}
 	?>
-	<p class="description"><?= $hint ?></p>
+    <p class="description"><?= $hint ?></p>
 	<?php
 }
