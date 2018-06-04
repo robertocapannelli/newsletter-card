@@ -11,13 +11,15 @@ Text Domain: walkap_cf7nc
 
 define( 'PLUGIN_NAME', 'CF7 newsletter card' );
 
-define( 'CF7NC_VERSION', '1.0' );
+define('PLUGIN_PREFIX', 'walkap_cf7nc');
 
-define( 'CF7NC_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+define( 'PLUGIN_VERSION', '1.0' );
 
-define( 'CF7NC_PUBLIC_STYLE', plugin_dir_url( __FILE__ ) . 'public/css/style.css' );
+define( 'PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 
-define( 'CF7NC_PUBLIC_SCRIPT', plugin_dir_url( __FILE__ ) . 'public/js/main.js' );
+define( 'PLUGIN_PUBLIC_STYLE', plugin_dir_url( __FILE__ ) . 'public/css/style.css' );
+
+define( 'PLUGIN_PUBLIC_SCRIPT', plugin_dir_url( __FILE__ ) . 'public/js/main.js' );
 
 /**
  *
