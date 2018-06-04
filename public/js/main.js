@@ -26,8 +26,7 @@ $(document).ready(function () {
     var container = $('.cf7nc-card-container');
     var height = container.height();
 
-    //TODO dynamic height container to avoid problem with form with more than one field
-
+    container.animate({bottom: -(height * 1.2) + 'px'});
     //resetCookie('is_card_hidden');
     console.log(document.cookie);
     //Check if the cookie is set, if not show the newsletter card
@@ -39,7 +38,7 @@ $(document).ready(function () {
         $(window).scroll(function () {
             var curScrollPos = jQuery(this).scrollTop();
             if (curScrollPos > scrollPos) {
-                $('.cf7nc-card-container').addClass('visible');
+                container.animate({bottom: "0"}, 300, 'linear');
                 console.log('scrolling');
             } else {
                 return
