@@ -1,15 +1,5 @@
 <?php
 
-define( 'OPTION_GROUP', 'walkap_cf7nc_group' );
-
-define( 'SECTION_ID', 'walkap_cf7nc_section' );
-
-define( 'SECTION_TITLE', 'Settings' );
-
-define( 'PAGE', 'cf7-newsletter-card' );
-
-define( 'FIELD_CB', 'walkap_cf7nc_settings_field_callback' );
-
 /**
  * Add the CF7 newsletter card sub menu to the CF7 main menu
  */

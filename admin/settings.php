@@ -1,4 +1,15 @@
 <?php
+
+define( 'OPTION_GROUP', 'walkap_cf7nc_group' );
+
+define( 'SECTION_ID', 'walkap_cf7nc_section' );
+
+define( 'SECTION_TITLE', 'Settings' );
+
+define( 'PAGE', 'cf7-newsletter-card' );
+
+define( 'FIELD_CB', 'walkap_cf7nc_settings_field_callback' );
+
 //these are option to cycle for admin form
 $options = [
 	[
