@@ -57,7 +57,7 @@ function walkap_cf7nc_scripts() {
 
 	if ( ! isset( $_COOKIE['is_card_hidden'] ) ) {
 		wp_enqueue_style( 'public_style', PLUGIN_PUBLIC_STYLE, null, '1.0.0' );
-		wp_enqueue_script( 'script-name', CF7NC_PUBLIC_SCRIPT, array( 'jquery' ), '1.0.0', true );
+		wp_enqueue_script( 'script-name', PLUGIN_PUBLIC_SCRIPT, array( 'jquery' ), '1.0.0', true );
 	}
 }
 
