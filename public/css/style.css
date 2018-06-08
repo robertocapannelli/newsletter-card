@@ -2,11 +2,11 @@
     position: fixed;
     right: 0;
     background: white;
-    padding: 15px;
+    padding: 20px 15px 15px;
     border: 1px solid darkgray;
     width: 100%;
     max-width: 400px;
-    z-index: 999;
+    z-index: 999 !important;
 }
 
 .cf7nc-card-container .cf7nc-card-wrapper {
@@ -15,12 +15,15 @@
 
 .cf7nc-card-container .cf7nc-card-wrapper .close-button {
     position: absolute !important;
-    top: 0 !important;
-    right: 0 !important;
+    top: -15px !important;
+    right: -8px !important;
     cursor: pointer;
 }
 
 .cf7nc-card-container .cf7nc-card-wrapper h4{
-    margin-top: 0px;
+    margin: 0 0 10px;
 }
 
+.cf7nc-card-container .cf7nc-card-wrapper p{
+    margin: 0 0 10px;
+}
