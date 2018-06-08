@@ -26,8 +26,8 @@ function resetCookie(cname) {
  * Init the newsletter card hide in the bottom
  */
 function init() {
-    var height = container.height();
-    container.animate({bottom: -(height * 1.2) + 'px'});
+    var height = container.outerHeight();
+    container.animate({bottom: -(height) + 'px'});
 }
 
 /**
