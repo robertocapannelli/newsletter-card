@@ -6,17 +6,21 @@
     border: 1px solid darkgray;
     width: 100%;
     max-width: 400px;
-
+    z-index: 999;
 }
 
 .cf7nc-card-container .cf7nc-card-wrapper {
-    position: relative;
+    position: relative !important;
 }
 
 .cf7nc-card-container .cf7nc-card-wrapper .close-button {
-    position: absolute;
-    top: 0;
-    right: 0;
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
     cursor: pointer;
+}
+
+.cf7nc-card-container .cf7nc-card-wrapper h4{
+    margin-top: 0px;
 }
 
