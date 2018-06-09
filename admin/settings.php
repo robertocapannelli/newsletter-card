@@ -157,6 +157,7 @@ HTML;
  * Get cookie option from the database
  */
 function walkap_cf7nc_get_cookie_option() {
+	check_ajax_referer( 'is_hidden_card' );
 	$exdays = 2;
 	if ( get_option( 'walkap_cf7nc_exdays' ) ) {
 		$exdays = get_option( 'walkap_cf7nc_exdays' );
