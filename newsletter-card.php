@@ -9,6 +9,11 @@ Author URI: https://walkap.com
 Text Domain: walkap_cf7nc
 */
 
+// If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
+
 define( 'PLUGIN_NAME', 'CF7 newsletter card' );
 
 define( 'PLUGIN_PREFIX', 'walkap_cf7nc' );
