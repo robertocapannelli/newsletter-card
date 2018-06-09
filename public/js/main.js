@@ -1,5 +1,5 @@
-var $ = jQuery.noConflict();
-var container = $('.cf7nc-card-container');
+const $ = jQuery.noConflict();
+const container = $('.cf7nc-card-container');
 
 /**
  * Set a cookie
@@ -11,7 +11,9 @@ function setCookie(cname, cvalue, exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
     var expires = "expires=" + d.toUTCString();
+    console.log('setCookie(): expires: ' + expires);
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    console.log(cname + "=" + cvalue + ";" + expires + ";path=/");
 }
 
 /**
@@ -28,6 +30,7 @@ function resetCookie(cname) {
 function init() {
     var height = container.outerHeight();
     container.animate({bottom: -(height) + 'px'});
+    console.log('init(): Init container DOM');
 }
 
 /**
@@ -36,9 +39,10 @@ function init() {
 function closeCard() {
     //On click close card and set cookie to hide the card in next 7 days
     $(' .close-button').click(function () {
+        console.log('closeCard(): Click on close button');
         container.css('display', 'none');
-        console.log('is_card_hidde added');
-        setCookie('is_card_hidden', 'true', 2);
+        console.log('closeCard(): is_card_hidde added');
+        getExdays('is_card_hidden', 'true');
     });
 }
 
@@ -55,8 +59,8 @@ function openCard() {
         $(window).scroll(function () {
             var curScrollPos = jQuery(this).scrollTop();
             if (curScrollPos > scrollPos) {
+                console.log('openCard(): Scroll over 200px')
                 container.animate({bottom: "0"}, 300, 'linear');
-                console.log('scrolling');
             } else {
                 return
             }
@@ -65,9 +69,29 @@ function openCard() {
     }
 }
 
+/**
+ * Get expiration days with ajax
+ */
+function getExdays(cname, cvalue) {
+    var data = null;
+    $.ajax({
+        method: 'POST',
+        url: location + 'wp-admin/admin-ajax.php',
+        dataType: 'JSON',
+        data: {
+            action: 'get_cookie_option'
+        },
+        success: function (response) {
+            data = response;
+            console.log(data);
+            setCookie(cname, cvalue, data)
+        }
+    });
+}
+
 $(document).ready(function () {
     //resetCookie('is_card_hidden');
-    console.log(document.cookie);
+    console.log('Document ready: ' + document.cookie);
     init();
     openCard();
     closeCard();
