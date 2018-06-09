@@ -17,9 +17,9 @@ define( 'PLUGIN_VERSION', '1.0' );
 
 define( 'PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 
-define( 'PLUGIN_PUBLIC_STYLE', plugin_dir_url( __FILE__ ) . 'public/css/style.css' );
+define( 'PLUGIN_PUBLIC_STYLE', plugins_url( '/public/css/style.css', __FILE__ ));
 
-define( 'PLUGIN_PUBLIC_SCRIPT', plugin_dir_url( __FILE__ ) . 'public/js/main.js' );
+define( 'PLUGIN_PUBLIC_SCRIPT', plugins_url( '/public/js/main.js', __FILE__ ) );
 
 /**
  *
@@ -50,6 +50,9 @@ add_action( 'admin_notices', 'walkap_cf7nc_error' );
 
 require_once plugin_dir_path( __FILE__ ) . '/settings.php';
 
+
+//TODO set cookie also when the form is submitted, but with a grater number of days
 //TODO add position left or right
 //TODO add style for background and color font
 //TODO add custom css field
+//TODO these changes could be done by a JSON so we just use ajax one time not storing data as json but call with php and serve to the front end with ajax
