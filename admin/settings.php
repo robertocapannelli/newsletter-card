@@ -1,7 +1,7 @@
 <?php
 //Remove WordPress thank you footer
 add_filter( 'admin_footer_text', '__return_empty_string', 11 );
-add_filter( 'update_footer',     '__return_empty_string', 11 );
+add_filter( 'update_footer', '__return_empty_string', 11 );
 
 //Group
 define( 'OPTION_GROUP', 'walkap_cf7nc_group' );
@@ -59,6 +59,49 @@ $options = [
 		'hint'        => 'Choose how many days you want to remember the user choice about to show or not the newsletter card. <br> Default value is 2 days'
 	]
 ];
+
+
+/**
+ * Add the CF7 newsletter card sub menu to the CF7 main menu
+ */
+function walkap_cf7nc_menu() {
+	//Check if CF7 is installed
+	if ( ! is_plugin_active( 'contact-form-7/wp-contact-form-7.php' ) ) {
+		return;
+	}
+	//Add submenu under CF7 menu
+	add_submenu_page(
+		'wpcf7',
+		PLUGIN_NAME,
+		PLUGIN_NAME,
+		'manage_options',
+		PAGE,
+		'walkap_cf7nc_options_page_html'
+	);
+}
+
+add_action( 'admin_menu', 'walkap_cf7nc_menu' );
+
+/**
+ * Callback function for add_submenu
+ */
+function walkap_cf7nc_options_page_html() {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+	// check if the user have submitted the settings
+	// wordpress will add the "settings-updated" $_GET parameter to the url
+	if ( isset( $_GET['settings-updated'] ) ) {
+		// add settings saved message with the class of "updated"
+		add_settings_error( 'walkap_cf7nc_messages', 'walkap_cf7nc_message', __( 'Settings Saved', 'walkap_cf7nc' ), 'updated' );
+	}
+
+	// show error/update messages
+	settings_errors( 'walkap_cf7nc_messages' );
+	//Require view.php file that contains admin view
+	require_once( PLUGIN_DIR . 'admin/view.php' );
+}
+
 
 /**
  * This function init the form components
@@ -125,7 +168,7 @@ function walkap_cf7nc_settings_field_callback( $args ) {
 	$value       = isset( $setting ) ? esc_attr( $setting ) : '';
 	$required    = isset( $args['is_required'] ) ? esc_attr( 'required' ) : '';
 
-	$range = ($type == 'number') ? 'min="0"' : '';
+	$range = ( $type == 'number' ) ? 'min="0"' : '';
 
 	$text     = <<<HTML
         <input type="$type" $range name="$option_name" value="$value" $required>
