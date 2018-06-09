@@ -26,8 +26,7 @@ define( 'PLUGIN_PUBLIC_STYLE', plugins_url( '/public/css/style.css', __FILE__ ) 
 
 define( 'PLUGIN_PUBLIC_SCRIPT', plugins_url( '/public/js/main.js', __FILE__ ) );
 
-require_once PLUGIN_DIR . 'admin/notice.php';
-require_once PLUGIN_DIR . 'settings.php';
+require_once PLUGIN_DIR . 'init.php';
 
 //TODO set cookie also when the form is submitted, but with a grater number of days
 //TODO add position left or right
