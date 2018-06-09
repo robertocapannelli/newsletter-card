@@ -153,19 +153,17 @@ HTML;
 	<?php
 }
 
-function get_cookie_option() {
-
-	$exdays = null;
-
+/**
+ * Get cookie option from the database
+ */
+function walkap_cf7nc_get_cookie_option() {
+	$exdays = 2;
 	if ( get_option( 'walkap_cf7nc_exdays' ) ) {
 		$exdays = get_option( 'walkap_cf7nc_exdays' );
 	}
-
 	echo $exdays;
-
 	wp_die();
-
 }
 
-add_action( 'wp_ajax_get_cookie_option', 'get_cookie_option' );
-add_action( 'wp_ajax_nopriv_get_cookie_option', 'get_cookie_option' );
+add_action( 'wp_ajax_walkap_cf7nc_get_cookie_option', 'walkap_cf7nc_get_cookie_option' );
+add_action( 'wp_ajax_nopriv_walkap_cf7nc_get_cookie_option', 'walkap_cf7nc_get_cookie_option' );

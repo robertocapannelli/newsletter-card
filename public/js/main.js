@@ -73,13 +73,13 @@ function openCard() {
  * Get expiration days with ajax
  */
 function getExdays(cname, cvalue) {
-    var data = null;
+    var data;
     $.ajax({
         method: 'POST',
         url: location + 'wp-admin/admin-ajax.php',
         dataType: 'JSON',
         data: {
-            action: 'get_cookie_option'
+            action: 'walkap_cf7nc_get_cookie_option'
         },
         success: function (response) {
             data = response;
