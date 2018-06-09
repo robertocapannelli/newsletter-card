@@ -47,16 +47,15 @@ function openCard() {
     if (!document.cookie.split(';').filter(function (item) {
         return item.indexOf('is_card_hidden=true') >= 0
     }).length) {
-        var scrollPos = 200;
+        var bound = 200;
+        var isVisible = false;
         //On scroll show the card
         $(window).scroll(function () {
-            var curScrollPos = jQuery(this).scrollTop();
-            if (curScrollPos > scrollPos) {
+            var currentPosition = jQuery(this).scrollTop();
+            if (currentPosition > bound && !isVisible) {
                 container.animate({bottom: "0"}, 300, 'linear');
-            } else {
-                return
+                isVisible = true;
             }
-            scrollPos = curScrollPos;
         });
     }
 }
@@ -73,7 +72,6 @@ function getExdays(cname, cvalue) {
         setCookie(cname, cvalue, data)
     });
 }
-
 
 $(document).ready(function () {
     init();
