@@ -13,8 +13,8 @@ function walkap_cf7nc_options_page() {
 	//Add submenu under CF7 menu
 	add_submenu_page(
 		'wpcf7',
-		PLUGIN_NAME,
-		PLUGIN_NAME,
+		CF7_NC_PLUGIN_NAME,
+		CF7_NC_PLUGIN_NAME,
 		'manage_options',
 		PAGE,
 		'walkap_cf7nc_options_page_html'

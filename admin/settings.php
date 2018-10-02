@@ -72,8 +72,8 @@ function walkap_cf7nc_menu() {
 	//Add submenu under CF7 menu
 	add_submenu_page(
 		'wpcf7',
-		PLUGIN_NAME,
-		PLUGIN_NAME,
+		CF7_NC_PLUGIN_NAME,
+		CF7_NC_PLUGIN_NAME,
 		'manage_options',
 		PAGE,
 		'walkap_cf7nc_options_page_html'
@@ -166,7 +166,7 @@ function walkap_cf7nc_settings_field_callback( $args ) {
 	$option_name = esc_attr( $args['option_name'] );
 	$hint        = $args['hint'];
 	$value       = isset( $setting ) ? esc_attr( $setting ) : '';
-	$required    = isset( $args['is_required'] ) && $args['is_required']  ? esc_attr( 'required' ) : '';
+	$required    = isset( $args['is_required'] ) ? esc_attr( 'required' ) : '';
 
 	$range = ( $type == 'number' ) ? 'min="0"' : '';
 
