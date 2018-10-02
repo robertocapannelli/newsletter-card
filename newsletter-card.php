@@ -33,3 +33,4 @@ require_once PLUGIN_DIR . 'init.php';
 //TODO add style for background and color font
 //TODO add custom css field
 //TODO these changes could be done by a JSON so we just use ajax one time not storing data as json but call with php and serve to the front end with ajax
+//TODO exclude pages?
