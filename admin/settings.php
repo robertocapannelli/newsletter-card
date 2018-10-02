@@ -126,10 +126,8 @@ function cf7_nc_settings_field_callback( $args ) {
 	$option_name = esc_attr( $args['option_name'] );
 	$hint        = $args['hint'];
 	$value       = isset( $setting ) ? esc_attr( $setting ) : '';
-	$required    = isset( $args['is_required'] ) ? esc_attr( 'required' ) : '';
-
+	$required    = ( $args['is_required'] == true ) ? esc_attr( 'required' ) : '';
 	$range = ( $type == 'number' ) ? 'min="0"' : '';
-
 	$text     = <<<HTML
         <input type="$type" $range name="$option_name" value="$value" $required>
 HTML;
