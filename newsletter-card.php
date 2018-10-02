@@ -21,7 +21,6 @@ define( 'CF7_NC_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'CF7_NC_PLUGIN_PUBLIC_STYLE', plugins_url( '/public/css/style.css', __FILE__ ) );
 define( 'CF7_NC_PLUGIN_PUBLIC_SCRIPT', plugins_url( '/public/js/main.js', __FILE__ ) );
 
-
 require_once CF7_NC_PLUGIN_DIR . 'init.php';
 
 //TODO set cookie also when the form is submitted, but with a grater number of days

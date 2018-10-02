@@ -4,7 +4,7 @@ if ( is_admin() ) {
 	require_once CF7_NC_PLUGIN_DIR . 'admin/notice.php';
 	require_once( CF7_NC_PLUGIN_DIR . 'admin/settings.php' );
 } else {
-	$shortcode = get_option( 'walkap_cf7nc_shortcode' );
+	$shortcode = get_option( CF7_NC_PLUGIN_TEXT_DOMAIN . '_shortcode' );
 	//needed to invoke is_plugin_active
 	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 	$is_active = is_plugin_active( CF7_NC_PLUGIN_DIR . '/newsletter-card.php' );
