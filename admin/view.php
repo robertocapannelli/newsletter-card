@@ -9,4 +9,3 @@
         </form>
     </div>
 <p>The symbol * means the field is mandatory.</p>
-<?php
