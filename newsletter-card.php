@@ -14,33 +14,25 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-if(! defined('CF7_NC_PLUGIN_NAME')){
-	define( 'CF7_NC_PLUGIN_NAME', 'CF7 newsletter card' );
-}
-
-if(! defined('CF7_NC_PLUGIN_PREFIX')){
-	define( 'CF7_NC_PLUGIN_PREFIX', 'walkap_cf7nc' );
-}
-
-if(! defined('CF7_NC_PLUGIN_VERSION')){
-	define( 'CF7_NC_PLUGIN_VERSION', '1.0' );
-}
-
-if(! defined('CF7_NC_PLUGIN_DIR')){
-	define( 'CF7_NC_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
-}
-
-if(! defined('CF7_NC_PLUGIN_PUBLIC_STYLE')){
-	define( 'CF7_NC_PLUGIN_PUBLIC_STYLE', plugins_url( '/public/css/style.css', __FILE__ ) );
-
-}
-
-if(! defined('CF7_NC_PLUGIN_PUBLIC_SCRIPT')){
-	define( 'CF7_NC_PLUGIN_PUBLIC_SCRIPT', plugins_url( '/public/js/main.js', __FILE__ ) );
-}
+define( 'CF7_NC_PLUGIN_NAME', 'CF7 newsletter card' );
 
 
-require_once PLUGIN_DIR . 'init.php';
+define( 'CF7_NC_PLUGIN_PREFIX', 'walkap_cf7nc' );
+
+
+define( 'CF7_NC_PLUGIN_VERSION', '1.0' );
+
+
+define( 'CF7_NC_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+
+
+define( 'CF7_NC_PLUGIN_PUBLIC_STYLE', plugins_url( '/public/css/style.css', __FILE__ ) );
+
+
+define( 'CF7_NC_PLUGIN_PUBLIC_SCRIPT', plugins_url( '/public/js/main.js', __FILE__ ) );
+
+
+require_once CF7_NC_PLUGIN_DIR . 'init.php';
 
 //TODO set cookie also when the form is submitted, but with a grater number of days
 //TODO add position left or right

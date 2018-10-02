@@ -4,28 +4,28 @@ add_filter( 'admin_footer_text', '__return_empty_string', 11 );
 add_filter( 'update_footer', '__return_empty_string', 11 );
 
 //Group
-define( 'OPTION_GROUP', 'walkap_cf7nc_group' );
+define( 'CF7_NC_OPTION_GROUP', 'walkap_cf7nc_group' );
 
 //Section settings
-define( 'SECTION_SETTINGS_ID', 'walkap_cf7nc_settings' );
-define( 'SECTION_SETTINGS_TITLE', 'Settings' );
+define( 'CF7_NC_SECTION_SETTINGS_ID', 'walkap_cf7nc_settings' );
+define( 'CF7_NC_SECTION_SETTINGS_TITLE', 'Settings' );
 
 //Settings content
-define( 'SECTION_CONTENT_ID', 'walkap_cf7nc_content' );
-define( 'SECTION_CONTENT_TITLE', 'Content' );
+define( 'CF7_NC_SECTION_CONTENT_ID', 'walkap_cf7nc_content' );
+define( 'CF7_NC_SECTION_CONTENT_TITLE', 'Content' );
 
 //Page slug
-define( 'PAGE', 'cf7-newsletter-card' );
+define( 'CF7_NC_PAGE', 'cf7-newsletter-card' );
 
 //Field callback function
-define( 'FIELD_CB', 'walkap_cf7nc_settings_field_callback' );
+define( 'CF7_NC_FIELD_CB', 'walkap_cf7nc_settings_field_callback' );
 
 //these are option to cycle for admin form
 $options = [
 	[
 		'option_name' => 'walkap_cf7nc_shortcode',
 		'type'        => 'text',
-		'section'     => SECTION_CONTENT_ID,
+		'section'     => CF7_NC_SECTION_CONTENT_ID,
 		'field_id'    => 'shortcode',
 		'field_title' => 'Shortcode *',
 		'is_required' => true,
@@ -34,7 +34,7 @@ $options = [
 	[
 		'option_name' => 'walkap_cf7nc_title',
 		'type'        => 'text',
-		'section'     => SECTION_CONTENT_ID,
+		'section'     => CF7_NC_SECTION_CONTENT_ID,
 		'field_id'    => 'title',
 		'field_title' => 'Card Title',
 		'is_required' => false,
@@ -43,7 +43,7 @@ $options = [
 	[
 		'option_name' => 'walkap_cf7nc_description',
 		'type'        => 'textarea',
-		'section'     => SECTION_CONTENT_ID,
+		'section'     => CF7_NC_SECTION_CONTENT_ID,
 		'field_id'    => 'description',
 		'field_title' => 'Card description',
 		'is_required' => false,
@@ -52,14 +52,13 @@ $options = [
 	[
 		'option_name' => 'walkap_cf7nc_exdays',
 		'type'        => 'number',
-		'section'     => SECTION_SETTINGS_ID,
+		'section'     => CF7_NC_SECTION_SETTINGS_ID,
 		'field_id'    => 'exdays',
 		'field_title' => 'Cookie expiring days',
 		'is_required' => false,
 		'hint'        => 'Choose how many days you want to remember the user choice about to show or not the newsletter card. <br> Default value is 2 days'
 	]
 ];
-
 
 /**
  * Add the CF7 newsletter card sub menu to the CF7 main menu
@@ -75,7 +74,7 @@ function walkap_cf7nc_menu() {
 		CF7_NC_PLUGIN_NAME,
 		CF7_NC_PLUGIN_NAME,
 		'manage_options',
-		PAGE,
+		CF7_NC_PAGE,
 		'walkap_cf7nc_options_page_html'
 	);
 }
@@ -99,9 +98,8 @@ function walkap_cf7nc_options_page_html() {
 	// show error/update messages
 	settings_errors( 'walkap_cf7nc_messages' );
 	//Require view.php file that contains admin view
-	require_once( PLUGIN_DIR . 'admin/view.php' );
+	require_once( CF7_NC_PLUGIN_DIR . 'admin/view.php' );
 }
-
 
 /**
  * This function init the form components
@@ -112,17 +110,17 @@ function walkap_cf7nc_settings_init() {
 
 	//Add the settings section as the function name suggests
 	add_settings_section(
-		SECTION_CONTENT_ID,
-		SECTION_CONTENT_TITLE,
+		CF7_NC_SECTION_CONTENT_ID,
+		CF7_NC_SECTION_CONTENT_TITLE,
 		null,
-		PAGE
+		CF7_NC_PAGE
 	);
 
 	add_settings_section(
-		SECTION_SETTINGS_ID,
-		SECTION_SETTINGS_TITLE,
+		CF7_NC_SECTION_SETTINGS_ID,
+		CF7_NC_SECTION_SETTINGS_TITLE,
 		null,
-		PAGE
+		CF7_NC_PAGE
 	);
 
 	if ( is_array( $options ) || is_object( $options ) ) {
@@ -130,7 +128,7 @@ function walkap_cf7nc_settings_init() {
 
 			//Register the setting in database
 			register_setting(
-				OPTION_GROUP,
+				CF7_NC_OPTION_GROUP,
 				$option['option_name']
 			);
 
@@ -138,8 +136,8 @@ function walkap_cf7nc_settings_init() {
 			add_settings_field(
 				$option['field_id'],
 				$option['field_title'],
-				FIELD_CB,
-				PAGE,
+				CF7_NC_FIELD_CB,
+				CF7_NC_PAGE,
 				$option['section'],
 				[
 					'type'        => $option['type'],
@@ -152,14 +150,13 @@ function walkap_cf7nc_settings_init() {
 
 	}
 }
-
 add_action( 'admin_init', 'walkap_cf7nc_settings_init' );
+
 
 /**
  * Callback add_setting_fields
  */
 function walkap_cf7nc_settings_field_callback( $args ) {
-
 	//Get the option from the database
 	$setting     = get_option( $args['option_name'] );
 	$type        = esc_attr( $args['type'] );
@@ -208,6 +205,5 @@ function walkap_cf7nc_get_cookie_option() {
 	echo $exdays;
 	wp_die();
 }
-
 add_action( 'wp_ajax_walkap_cf7nc_get_cookie_option', 'walkap_cf7nc_get_cookie_option' );
 add_action( 'wp_ajax_nopriv_walkap_cf7nc_get_cookie_option', 'walkap_cf7nc_get_cookie_option' );
