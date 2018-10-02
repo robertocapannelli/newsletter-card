@@ -17,7 +17,7 @@ if ( ! defined( 'WPINC' ) ) {
 define( 'CF7_NC_PLUGIN_NAME', 'CF7 newsletter card' );
 
 
-define( 'CF7_NC_PLUGIN_PREFIX', 'walkap_cf7nc' );
+define( 'CF7_NC_PLUGIN_TEXT_DOMAIN', 'cf7_nc' );
 
 
 define( 'CF7_NC_PLUGIN_VERSION', '1.0' );

@@ -10,7 +10,7 @@ if (!defined('WP_UNINSTALL_PLUGIN')) {
  */
 function walkap_cf7nc_delete_plugin(){
 	//TODO delete all options not just the shortcode
-	$option_name = 'walkap_cf7nc_shortcode';
+	$option_name = CF7_NC_PLUGIN_TEXT_DOMAIN . '_shortcode';
 	delete_option($option_name);
 	// for site options in Multisite
 	delete_site_option($option_name);

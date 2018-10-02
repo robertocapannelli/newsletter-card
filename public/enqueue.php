@@ -2,7 +2,7 @@
 /**
  * Enqueue scripts and styles
  */
-function walkap_cf7nc_scripts() {
+function cf7_nc_scripts() {
 
 	//unset($_COOKIE['is_card_hidden']);
 
@@ -17,4 +17,4 @@ function walkap_cf7nc_scripts() {
 		) );
 	}
 }
-add_action( 'wp_enqueue_scripts', 'walkap_cf7nc_scripts' );
+add_action( 'wp_enqueue_scripts', 'cf7_nc_scripts' );

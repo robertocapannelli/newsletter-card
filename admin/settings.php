@@ -4,26 +4,26 @@ add_filter( 'admin_footer_text', '__return_empty_string', 11 );
 add_filter( 'update_footer', '__return_empty_string', 11 );
 
 //Group
-define( 'CF7_NC_OPTION_GROUP', 'walkap_cf7nc_group' );
+define( 'CF7_NC_OPTION_GROUP', CF7_NC_PLUGIN_TEXT_DOMAIN . '_group' );
 
 //Section settings
-define( 'CF7_NC_SECTION_SETTINGS_ID', 'walkap_cf7nc_settings' );
+define( 'CF7_NC_SECTION_SETTINGS_ID', CF7_NC_PLUGIN_TEXT_DOMAIN . '_settings' );
 define( 'CF7_NC_SECTION_SETTINGS_TITLE', 'Settings' );
 
 //Settings content
-define( 'CF7_NC_SECTION_CONTENT_ID', 'walkap_cf7nc_content' );
+define( 'CF7_NC_SECTION_CONTENT_ID', CF7_NC_PLUGIN_TEXT_DOMAIN . '_content' );
 define( 'CF7_NC_SECTION_CONTENT_TITLE', 'Content' );
 
 //Page slug
 define( 'CF7_NC_PAGE', 'cf7-newsletter-card' );
 
 //Field callback function
-define( 'CF7_NC_FIELD_CB', 'walkap_cf7nc_settings_field_callback' );
+define( 'CF7_NC_FIELD_CB', CF7_NC_PLUGIN_TEXT_DOMAIN . '_settings_field_callback' );
 
 //these are option to cycle for admin form
 $options = [
 	[
-		'option_name' => 'walkap_cf7nc_shortcode',
+		'option_name' => CF7_NC_PLUGIN_TEXT_DOMAIN . '_shortcode',
 		'type'        => 'text',
 		'section'     => CF7_NC_SECTION_CONTENT_ID,
 		'field_id'    => 'shortcode',
@@ -32,7 +32,7 @@ $options = [
 		'hint'        => 'Type here your CF7 shortcode, make sure your form has just an email field to have a cooler newsletter card'
 	],
 	[
-		'option_name' => 'walkap_cf7nc_title',
+		'option_name' => CF7_NC_PLUGIN_TEXT_DOMAIN . '_title',
 		'type'        => 'text',
 		'section'     => CF7_NC_SECTION_CONTENT_ID,
 		'field_id'    => 'title',
@@ -41,7 +41,7 @@ $options = [
 		'hint'        => 'Type here the title you want to display in the front-end, just above the description and the form field'
 	],
 	[
-		'option_name' => 'walkap_cf7nc_description',
+		'option_name' => CF7_NC_PLUGIN_TEXT_DOMAIN . '_description',
 		'type'        => 'textarea',
 		'section'     => CF7_NC_SECTION_CONTENT_ID,
 		'field_id'    => 'description',
@@ -50,7 +50,7 @@ $options = [
 		'hint'        => 'Type here the description you want to display in the front-end, between the title and the form field'
 	],
 	[
-		'option_name' => 'walkap_cf7nc_exdays',
+		'option_name' => CF7_NC_PLUGIN_TEXT_DOMAIN . '_exdays',
 		'type'        => 'number',
 		'section'     => CF7_NC_SECTION_SETTINGS_ID,
 		'field_id'    => 'exdays',
@@ -63,7 +63,7 @@ $options = [
 /**
  * Add the CF7 newsletter card sub menu to the CF7 main menu
  */
-function walkap_cf7nc_menu() {
+function cf7_nc_menu() {
 	//Check if CF7 is installed
 	if ( ! is_plugin_active( 'contact-form-7/wp-contact-form-7.php' ) ) {
 		return;
@@ -75,16 +75,16 @@ function walkap_cf7nc_menu() {
 		CF7_NC_PLUGIN_NAME,
 		'manage_options',
 		CF7_NC_PAGE,
-		'walkap_cf7nc_options_page_html'
+		'cf7_nc_options_page_html'
 	);
 }
 
-add_action( 'admin_menu', 'walkap_cf7nc_menu' );
+add_action( 'admin_menu', 'cf7_nc_menu' );
 
 /**
  * Callback function for add_submenu
  */
-function walkap_cf7nc_options_page_html() {
+function cf7_nc_options_page_html() {
 	if ( ! current_user_can( 'manage_options' ) ) {
 		return;
 	}
@@ -92,11 +92,11 @@ function walkap_cf7nc_options_page_html() {
 	// wordpress will add the "settings-updated" $_GET parameter to the url
 	if ( isset( $_GET['settings-updated'] ) ) {
 		// add settings saved message with the class of "updated"
-		add_settings_error( 'walkap_cf7nc_messages', 'walkap_cf7nc_message', __( 'Settings Saved', 'walkap_cf7nc' ), 'updated' );
+		add_settings_error( CF7_NC_PLUGIN_TEXT_DOMAIN . '_messages', CF7_NC_PLUGIN_TEXT_DOMAIN . '_message', __( 'Settings Saved', CF7_NC_PLUGIN_TEXT_DOMAIN ), 'updated' );
 	}
 
 	// show error/update messages
-	settings_errors( 'walkap_cf7nc_messages' );
+	settings_errors( CF7_NC_PLUGIN_TEXT_DOMAIN . '_messages' );
 	//Require view.php file that contains admin view
 	require_once( CF7_NC_PLUGIN_DIR . 'admin/view.php' );
 }
@@ -104,7 +104,7 @@ function walkap_cf7nc_options_page_html() {
 /**
  * This function init the form components
  */
-function walkap_cf7nc_settings_init() {
+function cf7_nc_settings_init() {
 
 	global $options;
 
@@ -150,13 +150,13 @@ function walkap_cf7nc_settings_init() {
 
 	}
 }
-add_action( 'admin_init', 'walkap_cf7nc_settings_init' );
+add_action( 'admin_init', 'cf7_nc_settings_init' );
 
 
 /**
  * Callback add_setting_fields
  */
-function walkap_cf7nc_settings_field_callback( $args ) {
+function cf7_nc_settings_field_callback( $args ) {
 	//Get the option from the database
 	$setting     = get_option( $args['option_name'] );
 	$type        = esc_attr( $args['type'] );
@@ -196,14 +196,14 @@ HTML;
 /**
  * Get cookie option from the database
  */
-function walkap_cf7nc_get_cookie_option() {
+function cf7_nc_get_cookie_option() {
 	check_ajax_referer( 'is_hidden_card' );
 	$exdays = 2;
-	if ( get_option( 'walkap_cf7nc_exdays' ) ) {
-		$exdays = get_option( 'walkap_cf7nc_exdays' );
+	if ( get_option( CF7_NC_PLUGIN_TEXT_DOMAIN . '_exdays' ) ) {
+		$exdays = get_option( CF7_NC_PLUGIN_TEXT_DOMAIN . '_exdays' );
 	}
 	echo $exdays;
 	wp_die();
 }
-add_action( 'wp_ajax_walkap_cf7nc_get_cookie_option', 'walkap_cf7nc_get_cookie_option' );
-add_action( 'wp_ajax_nopriv_walkap_cf7nc_get_cookie_option', 'walkap_cf7nc_get_cookie_option' );
+add_action( 'wp_ajax_' . CF7_NC_PLUGIN_TEXT_DOMAIN . '_get_cookie_option', 'cf7_nc_get_cookie_option' );
+add_action( 'wp_ajax_nopriv_' . CF7_NC_PLUGIN_TEXT_DOMAIN . '_get_cookie_option', 'cf7_nc_get_cookie_option' );
