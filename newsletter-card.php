@@ -15,20 +15,10 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 define( 'CF7_NC_PLUGIN_NAME', 'CF7 newsletter card' );
-
-
 define( 'CF7_NC_PLUGIN_TEXT_DOMAIN', 'cf7_nc' );
-
-
 define( 'CF7_NC_PLUGIN_VERSION', '1.0' );
-
-
 define( 'CF7_NC_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
-
-
 define( 'CF7_NC_PLUGIN_PUBLIC_STYLE', plugins_url( '/public/css/style.css', __FILE__ ) );
-
-
 define( 'CF7_NC_PLUGIN_PUBLIC_SCRIPT', plugins_url( '/public/js/main.js', __FILE__ ) );
 
 
