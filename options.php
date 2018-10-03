@@ -1,4 +1,7 @@
 <?php
+
+//TODO move this into includes folder
+
 return [
 	[
 		'option_name' => CF7_NC_PLUGIN_TEXT_DOMAIN . '_shortcode',

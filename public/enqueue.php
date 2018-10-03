@@ -2,19 +2,22 @@
 /**
  * Enqueue scripts and styles
  */
-function cf7_nc_scripts() {
 
-	//unset($_COOKIE['is_card_hidden']);
+if(!function_exists('')){
+	function cf7_nc_scripts() {
 
-	if ( ! isset( $_COOKIE['is_card_hidden'] ) ) {
-		wp_enqueue_style( 'public_style', CF7_NC_PLUGIN_PUBLIC_STYLE, null, CF7_NC_PLUGIN_VERSION );
-		wp_enqueue_script( 'public_script', CF7_NC_PLUGIN_PUBLIC_SCRIPT, array( 'jquery' ), CF7_NC_PLUGIN_VERSION, true );
+		//unset($_COOKIE['is_card_hidden']);
 
-		$nonce = wp_create_nonce( 'is_hidden_card' );
-		wp_localize_script( 'public_script', 'my_ajax_obj', array(
-			'ajax_url' => admin_url( 'admin-ajax.php' ),
-			'nonce'    => $nonce,
-		) );
+		if ( ! isset( $_COOKIE['is_card_hidden'] ) ) {
+			wp_enqueue_style( 'public_style', CF7_NC_PLUGIN_PUBLIC_STYLE, null, CF7_NC_PLUGIN_VERSION );
+			wp_enqueue_script( 'public_script', CF7_NC_PLUGIN_PUBLIC_SCRIPT, array( 'jquery' ), CF7_NC_PLUGIN_VERSION, true );
+
+			$nonce = wp_create_nonce( 'is_hidden_card' );
+			wp_localize_script( 'public_script', 'my_ajax_obj', array(
+				'ajax_url' => admin_url( 'admin-ajax.php' ),
+				'nonce'    => $nonce,
+			) );
+		}
 	}
+	add_action( 'wp_enqueue_scripts', 'cf7_nc_scripts' );
 }
-add_action( 'wp_enqueue_scripts', 'cf7_nc_scripts' );
