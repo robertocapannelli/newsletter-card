@@ -136,7 +136,7 @@ if(!function_exists('cf7_nc_settings_field_callback')){
 		$hint        = $args['hint'];
 		$value       = isset( $setting ) ? esc_attr( $setting ) : '';
 		$required    = ( $args['is_required'] == true ) ? esc_attr( 'required' ) : '';
-		$range = ( $type == 'number' ) ? 'min="0"' : ''; //TODO fix the cookie parameter
+		$range = ( $type == 'number' ) ? 'min="0"' : '';
 		$text     = <<<HTML
         <input type="$type" $range name="$option_name" value="$value" $required>
 HTML;
