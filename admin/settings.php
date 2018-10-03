@@ -21,7 +21,7 @@ define( 'CF7_NC_PAGE', 'cf7-newsletter-card' );
 define( 'CF7_NC_FIELD_CB', CF7_NC_PLUGIN_TEXT_DOMAIN . '_settings_field_callback' );
 
 //these are option to cycle for admin form
-$options = include CF7_NC_PLUGIN_DIR . 'options.php';
+$options = include CF7_NC_PLUGIN_DIR . 'inc/options.php';
 
 /**
  * Add the CF7 newsletter card sub menu to the CF7 main menu
