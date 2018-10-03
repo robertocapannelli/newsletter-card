@@ -6,7 +6,7 @@
     border: 1px solid darkgray;
     width: 100%;
     max-width: 400px;
-    z-index: 999 !important;
+    z-index: 99999 !important;
 }
 
 .cf7nc-card-container .cf7nc-card-wrapper {
