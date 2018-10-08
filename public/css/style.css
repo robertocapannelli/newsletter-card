@@ -1,4 +1,4 @@
-.cf7nc-card-container {
+.cf7-nc-card-container {
     position: fixed;
     right: 0;
     background: white;
@@ -9,21 +9,21 @@
     z-index: 99999 !important;
 }
 
-.cf7nc-card-container .cf7nc-card-wrapper {
+.cf7-nc-card-container .cf7-nc-card-wrapper {
     position: relative !important;
 }
 
-.cf7nc-card-container .cf7nc-card-wrapper .close-button {
+.cf7-nc-card-container .cf7-nc-card-wrapper .close-button {
     position: absolute !important;
     top: -15px !important;
     right: -8px !important;
     cursor: pointer;
 }
 
-.cf7nc-card-container .cf7nc-card-wrapper h4{
+.cf7-nc-card-container .cf7-nc-card-wrapper h4{
     margin: 0 0 10px;
 }
 
-.cf7nc-card-container .cf7nc-card-wrapper p{
+.cf7-nc-card-container .cf7-nc-card-wrapper p{
     margin: 0 0 10px;
 }

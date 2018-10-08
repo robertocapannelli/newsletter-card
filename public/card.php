@@ -1,5 +1,5 @@
-<div class="cf7nc-card-container">
-    <div class="cf7nc-card-wrapper">
+<div class="cf7-nc-card-container">
+    <div class="cf7-nc-card-wrapper">
 		<?php if ( get_option( CF7_NC_PLUGIN_TEXT_DOMAIN . '_title' ) ) { ?>
             <div class="header">
                 <h4><?= get_option( CF7_NC_PLUGIN_TEXT_DOMAIN . '_title' ) ?></h4>

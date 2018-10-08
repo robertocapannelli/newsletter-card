@@ -1,5 +1,5 @@
 const $ = jQuery.noConflict();
-const container = $('.cf7nc-card-container');
+const container = $('.cf7-nc-card-container');
 
 /**
  * Set a cookie
@@ -7,7 +7,7 @@ const container = $('.cf7nc-card-container');
  * @param cvalue - Cookie value
  * @param exdays - Expiration days
  */
-function setCookie(cname, cvalue, exdays) {
+function setCookie(cname, cvalue, exdays) { //TODO this doesn't working see dev.steliomlaori.it
     var d = new Date();
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
     var expires = "expires=" + d.toUTCString();
@@ -66,7 +66,7 @@ function openCard() {
 function getExdays(cname, cvalue) {
     $.post(my_ajax_obj.ajax_url, {
         _ajax_nonce: my_ajax_obj.nonce,
-        action: "walkap_cf7nc_get_cookie_option",
+        action: "cf7_nc_get_cookie_option",
         title: this.value
     }, function (data) {
         setCookie(cname, cvalue, data)
