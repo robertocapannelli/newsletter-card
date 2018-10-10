@@ -4,7 +4,7 @@ return [
 	[
 		'option_name' => CF7_NC_PLUGIN_TEXT_DOMAIN . '_shortcode',
 		'type'        => 'text',
-		'section'     => CF7_NC_SECTION_CONTENT_ID,
+		'section'     => $this->content_section_id,
 		'field_id'    => 'shortcode',
 		'field_title' => 'Shortcode *',
 		'is_required' => true,
@@ -13,7 +13,7 @@ return [
 	[
 		'option_name' => CF7_NC_PLUGIN_TEXT_DOMAIN . '_title',
 		'type'        => 'text',
-		'section'     => CF7_NC_SECTION_CONTENT_ID,
+		'section'     => $this->content_section_id,
 		'field_id'    => 'title',
 		'field_title' => 'Card Title',
 		'is_required' => false,
@@ -22,7 +22,7 @@ return [
 	[
 		'option_name' => CF7_NC_PLUGIN_TEXT_DOMAIN . '_description',
 		'type'        => 'textarea',
-		'section'     => CF7_NC_SECTION_CONTENT_ID,
+		'section'     => $this->content_section_id,
 		'field_id'    => 'description',
 		'field_title' => 'Card description',
 		'is_required' => false,
@@ -31,7 +31,7 @@ return [
 	[
 		'option_name' => CF7_NC_PLUGIN_TEXT_DOMAIN . '_exdays',
 		'type'        => 'number',
-		'section'     => CF7_NC_SECTION_SETTINGS_ID,
+		'section'     => $this->settings_section_id,
 		'field_id'    => 'exdays',
 		'field_title' => 'Cookie expiring days',
 		'is_required' => false,

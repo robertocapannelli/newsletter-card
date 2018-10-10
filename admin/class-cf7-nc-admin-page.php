@@ -20,17 +20,26 @@ if ( ! class_exists( 'CF7_Nc_Admin_Page' ) ) {
 		 * CF7_Nc_Admin_page constructor.
 		 */
 		public function __construct() {
+			$this->init_hooks();
+		}
+
+		/**
+		 * Hook into actions
+		 */
+		private function init_hooks(){
 			//Configure the settings API
 			add_action( 'admin_init', array( $this, 'configure' ) );
 
 			//Get ajax script works
-			add_action( 'wp_ajax_get_cookie_option', 'get_cookie_option' );
-			add_action( 'wp_ajax_nopriv_get_cookie_option', 'get_cookie_option' );
+			add_action( 'wp_ajax_get_cookie_option', array($this, 'get_cookie_option') );
+			add_action( 'wp_ajax_nopriv_get_cookie_option', array($this, 'get_cookie_option') );
+
+			add_action( 'admin_notices', array($this, 'notices') );
 
 			//Remove WordPress thank you footer
 			add_filter( 'admin_footer_text', '__return_empty_string', 11 );
 			add_filter( 'update_footer', '__return_empty_string', 11 );
-		}
+        }
 
 		public function get_parent_slug() {
 			return $this->parent_slug;
@@ -167,6 +176,24 @@ HTML;
 			echo $exdays;
 			wp_die();
 		}
+
+		/**
+		 * Display notices checking if CF7 plugin is installed and is active
+		 */
+		public function notices(){
+			if ( ! file_exists( WP_PLUGIN_DIR . '/contact-form-7/wp-contact-form-7.php' ) ) {
+				$error = '<div id="message" class="error is-dismissible"><p>';
+				$error .= __( 'The Contact Form 7 plugin must be installed for the <b>Newsletter card plugin</b> to work. <b><a href="' . admin_url( 'plugin-install.php?tab=plugin-information&plugin=contact-form-7&from=plugins&TB_iframe=true&width=600&height=550' ) . '" class="thickbox" title="Contact Form 7">Install Contact Form 7 Now.</a></b>', CF7_NC_PLUGIN_TEXT_DOMAIN );
+				$error .= '</p></div>';
+				echo $error;
+			} else if ( ! class_exists( 'WPCF7' ) ) {
+				$error = '<div id="message" class="error is-dismissible"><p>';
+				$error .= __( 'The Contact Form 7 is installed, but <strong>you must activate Contact Form 7</strong> below for the <b>Newsletter card plugin</b> to work.', CF7_NC_PLUGIN_TEXT_DOMAIN );
+				$error .= '</p></div>';
+				echo $error;
+			}
+        }
+
 
 	}
 }

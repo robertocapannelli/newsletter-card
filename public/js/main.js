@@ -7,7 +7,7 @@ const container = $('.cf7-nc-card-container');
  * @param cvalue - Cookie value
  * @param exdays - Expiration days
  */
-function setCookie(cname, cvalue, exdays) { //TODO this doesn't working see dev.steliomlaori.it
+function setCookie(cname, cvalue, exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
     var expires = "expires=" + d.toUTCString();
