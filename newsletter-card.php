@@ -3,10 +3,10 @@
 Plugin Name: Newsletter Card
 Plugin URI: https://github.com/robertocapannelli/newsletter-card
 Description: WordPress plugin that works with CF7 plugin to show a fancy subscription form on scrolling page
-Version: 1.0
+Version: 2.0.0
 Author: Roberto Capannelli
 Author URI: https://walkap.com
-Text Domain: walkap_cf7nc
+Text Domain: cf7_nc
 */
 
 // If this file is called directly, abort.
