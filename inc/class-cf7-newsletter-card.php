@@ -32,7 +32,7 @@ class CF7_Newsletter_Card {
 		$this->define( 'CF7_NC_PLUGIN_NAME', 'CF7 newsletter card' );
 		$this->define( 'CF7_NC_PLUGIN_TEXT_DOMAIN', 'cf7_nc' );
 		$this->define( 'CF7_NC_PLUGIN_SLUG', 'cf7-newsletter-card' );
-		$this->define( 'CF7_NC_PLUGIN_VERSION', '1.0' );
+		$this->define( 'CF7_NC_PLUGIN_VERSION', '2.0.0' );
 		$this->define( 'CF7_NC_ABSPATH', dirname( CF7_NC_PLUGIN_FILE ) );
 		$this->define( 'CF7_NC_PLUGIN_URI', plugins_url( 'newsletter-card' ) );
 		$this->define( 'CF7_NC_PLUGIN_PUBLIC_STYLE', CF7_NC_PLUGIN_URI . '/public/css/style.css' );
