@@ -2,6 +2,7 @@
 if ( ! class_exists( 'CF7_Nc_Admin_Page' ) ) {
 	class CF7_Nc_Admin_Page {
 
+	    //TODO these should be constant
 		private $plugin_slug = 'cf7-newsletter-card';
 		private $parent_slug = 'wpcf7';
 		private $menu_title = 'CF7 Newsletter Card';
@@ -40,6 +41,24 @@ if ( ! class_exists( 'CF7_Nc_Admin_Page' ) ) {
 			add_filter( 'admin_footer_text', '__return_empty_string', 11 );
 			add_filter( 'update_footer', '__return_empty_string', 11 );
 		}
+
+
+		/**
+		 * Get cookies options and pass it to the ajax script
+		 */
+		public function get_cookie_option() { //TODO this isn't working
+			check_ajax_referer( 'is_hidden_card' );
+			$exdays = 2;
+
+			$option = CF7_NC_PLUGIN_TEXT_DOMAIN . '_exdays';
+
+			if ( get_option( $option ) ) {
+				$exdays = get_option( $option );
+			}
+			echo $exdays;
+			wp_die();
+		}
+
 
 		/**
 		 * @return string
@@ -225,18 +244,7 @@ HTML;
 			<?php
 		}
 
-		/**
-		 * Get cookies options
-		 */
-		public function get_cookie_option() {
-			check_ajax_referer( 'is_hidden_card' );
-			$exdays = 2;
-			if ( get_option( CF7_NC_PLUGIN_TEXT_DOMAIN . '_exdays' ) ) {
-				$exdays = get_option( CF7_NC_PLUGIN_TEXT_DOMAIN . '_exdays' );
-			}
-			echo $exdays;
-			wp_die();
-		}
+
 
 		/**
 		 * Display notices checking if CF7 plugin is installed and is active
