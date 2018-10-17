@@ -86,5 +86,4 @@ class CF7_Option_Field {
 		return $this->hint;
 	}
 
-
 }
