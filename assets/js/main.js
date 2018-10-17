@@ -8,6 +8,9 @@ const container = $('.cf7-nc-card-container');
  * @param exdays - Expiration days
  */
 function setCookie(cname, cvalue, exdays) {
+
+    console.log('set coookie');
+
     var d = new Date();
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
     var expires = "expires=" + d.toUTCString();
@@ -36,7 +39,10 @@ function init() {
 function closeCard() {
     //On click close card and set cookie to hide the card in next 7 days
     container.css('display', 'none');
-    getExdays('is_card_hidden', 'true');
+    var key = 'is_card_hidden';
+    var value = 'true';
+
+    getExdays(key, value);
 }
 
 /**
@@ -64,14 +70,19 @@ function openCard() {
  * Get expiration days with ajax
  */
 function getExdays(cname, cvalue) {
-    $.post(my_ajax_obj.ajax_url, {
-        _ajax_nonce: my_ajax_obj.nonce,
-        action: "cf7_nc_get_cookie_option",
-        title: this.value
-    }, function (data) {
-        setCookie(cname, cvalue, data)
-    });
+    $.post(
+        my_ajax_obj.ajax_url,
+        {
+            _ajax_nonce: my_ajax_obj.nonce,
+            action: "get_cookie_option",
+            title: this.value
+        },
+        function (data) {
+            setCookie(cname, cvalue, data);
+        });
+
 }
+
 
 $(document).ready(function () {
     init();
@@ -79,4 +90,28 @@ $(document).ready(function () {
     $(' .close-button').click(function () {
         closeCard();
     });
+
+    /* var button = $('.cf7-nc-card-container #newsletter button');
+     var email = $('#newsletter #email');
+     var hidden_fields = $('.cf7-nc-card-container form .hidden-fields');
+
+     var validator = $(".cf7-nc-card-container #newsletter").validate({
+         rules: {
+             email: {
+                 required: true,
+                 email: true
+             }
+         }
+     });
+
+     validator.element('#email');
+
+     button.click(function () {
+         console.log('Button clicked');
+         if (email.hasClass('valid')) {
+             hidden_fields.removeClass('hidden');
+         }
+
+     });*/
+
 });
