@@ -19,8 +19,6 @@ if ( ! class_exists( 'CF7_Nc_Public' ) ) {
 				add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 				//Enqueue styles
 				add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
-				//Localize script for AJAX purpose
-				add_action( 'wp_enqueue_scripts', array( $this, 'localize_script' ) );
 				//Render the front-end content
 				add_action( 'wp_footer', array( $this, 'render_content' ) );
 			}
@@ -50,23 +48,6 @@ if ( ! class_exists( 'CF7_Nc_Public' ) ) {
 			wp_enqueue_script('jquery-validation');
 			wp_enqueue_script('jquery-validation-additional');
 		}
-
-		/**
-		 * Get cookie option
-		 */
-		public function localize_script() { //TODO make ajax class to handle all the process
-			//Creates a cryptographic token tied to a specific action, user, user session, and window of time.
-			$nonce = wp_create_nonce( 'is_hidden_card' );
-
-			wp_localize_script(
-				'public-script',
-				'my_ajax_obj',
-				array( 'ajax_url' => admin_url( 'admin-ajax.php' ),
-				       'nonce'    => $nonce,
-				) );
-		}
-
-
 
 		/**
 		 * Render the content to show in the footer

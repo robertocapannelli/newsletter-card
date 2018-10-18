@@ -30,35 +30,12 @@ if ( ! class_exists( 'CF7_Nc_Admin_Page' ) ) {
 		private function init_hooks() {
 			//Configure the settings API
 			add_action( 'admin_init', array( $this, 'configure' ) );
-
-			//Get ajax script works
-			add_action( 'wp_ajax_get_cookie_option', array( $this, 'get_cookie_option' ) );
-			add_action( 'wp_ajax_nopriv_get_cookie_option', array( $this, 'get_cookie_option' ) );
-
+			//Notices
 			add_action( 'admin_notices', array( $this, 'notices' ) );
-
 			//Remove WordPress thank you footer
 			add_filter( 'admin_footer_text', '__return_empty_string', 11 );
 			add_filter( 'update_footer', '__return_empty_string', 11 );
 		}
-
-
-		/**
-		 * Get cookies options and pass it to the ajax script
-		 */
-		public function get_cookie_option() { //TODO this isn't working
-			check_ajax_referer( 'is_hidden_card' );
-			$exdays = 2;
-
-			$option = CF7_NC_PLUGIN_TEXT_DOMAIN . '_exdays';
-
-			if ( get_option( $option ) ) {
-				$exdays = get_option( $option );
-			}
-			echo $exdays;
-			wp_die();
-		}
-
 
 		/**
 		 * @return string
@@ -243,8 +220,6 @@ HTML;
             <p class="description"><?= $hint ?></p>
 			<?php
 		}
-
-
 
 		/**
 		 * Display notices checking if CF7 plugin is installed and is active

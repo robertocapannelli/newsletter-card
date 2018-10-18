@@ -10,6 +10,7 @@ class CF7_Newsletter_Card {
 	public function __construct() {
 		$this->define_constants();
 		$this->init();
+		$this->init_ajax();
 	}
 
 	/**
@@ -22,6 +23,7 @@ class CF7_Newsletter_Card {
 		if ( is_null( self::$_instance ) ) {
 			self::$_instance = new self();
 		}
+
 		return self::$_instance;
 	}
 
@@ -54,7 +56,7 @@ class CF7_Newsletter_Card {
 	/**
 	 * Render the plugin menu and the relative admin page
 	 */
-	public function render_admin_page(){
+	public function render_admin_page() {
 		if ( ! class_exists( 'CF7_Nc_Admin_Page' ) ) {
 			include_once CF7_NC_ABSPATH . '/admin/class-cf7-nc-admin-page.php';
 		}
@@ -71,7 +73,7 @@ class CF7_Newsletter_Card {
 			$admin_page->get_menu_title(),
 			$admin_page->get_capability(),
 			$admin_page->get_plugin_slug(),
-			array($admin_page, 'render_page' )
+			array( $admin_page, 'render_page' )
 		);
 
 	}
@@ -79,7 +81,7 @@ class CF7_Newsletter_Card {
 	/**
 	 * Render the public content
 	 */
-	private function render_public(){
+	private function render_public() {
 		$shortcode = get_option( CF7_NC_PLUGIN_TEXT_DOMAIN . '_shortcode' );
 		//needed to invoke is_plugin_active
 		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
@@ -93,6 +95,7 @@ class CF7_Newsletter_Card {
 			include_once CF7_NC_ABSPATH . '/public/class-cf7-nc-public.php';
 		}
 		new CF7_Nc_Public();
+
 	}
 
 	/**
@@ -100,9 +103,21 @@ class CF7_Newsletter_Card {
 	 */
 	private function init() {
 		if ( is_admin() ) {
-			add_action( 'admin_menu', array($this, 'render_admin_page') );
+			add_action( 'admin_menu', array( $this, 'render_admin_page' ) );
 		} else {
 			$this->render_public();
 		}
 	}
+
+	/**
+	 * Init the class that handle ajax scripts
+	 */
+	private function init_ajax(){
+		if ( ! class_exists( 'CF7_Newsletter_Card_Ajax' ) ) {
+			include_once CF7_NC_ABSPATH . '/inc/class-cf7-newsletter-card-ajax.php';
+		}
+
+		CF7_Newsletter_Card_Ajax::register();
+	}
+
 }

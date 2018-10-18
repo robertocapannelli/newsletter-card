@@ -19,7 +19,7 @@ function setCookie(cname, cvalue, exdays) {
 
 /**
  * Reset a previous cookie
- * @param cname
+ * @param cname - Cookie name
  */
 function resetCookie(cname) {
     document.cookie = cname + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
@@ -68,21 +68,23 @@ function openCard() {
 
 /**
  * Get expiration days with ajax
+ *
+ * @param cname - Cookie name (i.e. is_hidden_card)
+ * @param cvalue - Cookie value (i.e. true)
  */
 function getExdays(cname, cvalue) {
+    var data = {
+        'action': my_ajax_obj.action,
+        '_ajax_nonce': my_ajax_obj.nonce,
+        'title' : this.title
+    };
     $.post(
         my_ajax_obj.ajax_url,
-        {
-            _ajax_nonce: my_ajax_obj.nonce,
-            action: "get_cookie_option",
-            title: this.value
-        },
-        function (data) {
-            setCookie(cname, cvalue, data);
+        data,
+        function (response) {
+            setCookie(cname, cvalue, response);
         });
-
 }
-
 
 $(document).ready(function () {
     init();
