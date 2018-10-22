@@ -17,17 +17,15 @@ if( !class_exists('CF7_Newsletter_Card_Ajax')){
 		 */
 		const NONCE = 'is_hidden_card';
 
+		private $plugin_name;
 
-		/**
-		 * Custom constructor that init actions
-		 */
-		public static function register() {
+		private $version;
 
-			$handler = new self();
+		public function __construct($plugin_name, $version) {
 
-			add_action( 'wp_enqueue_scripts', array( $handler, 'localize_script' ) );
-			add_action( 'wp_ajax_handle', array( $handler, 'handle' ) );
-			add_action( 'wp_ajax_nopriv_handle', array( $handler, 'handle' ) );
+			$this->plugin_name;
+
+			$this->version;
 
 		}
 

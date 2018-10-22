@@ -27,7 +27,7 @@ if ( ! class_exists( 'CF7_Nc_Admin_Page' ) ) {
 		/**
 		 * Hook into actions
 		 */
-		private function init_hooks() {
+		private function init_hooks() { //TODO use loader here
 			//Configure the settings API
 			add_action( 'admin_init', array( $this, 'configure' ) );
 			//Notices
@@ -134,7 +134,7 @@ if ( ! class_exists( 'CF7_Nc_Admin_Page' ) ) {
 			if ( is_array( $options ) || is_object( $options ) ) {
 
 				if ( ! class_exists( 'CF7_Option_Field' ) ) {
-					include_once CF7_NC_ABSPATH . '/admin/class-cf7-option-field.php';
+					include_once CF7_NC_ABSPATH . '/admin/class-cf7-newsletter-card-option-field.php';
 				}
 
 				foreach ( $options as $option ) {
@@ -237,6 +237,22 @@ HTML;
 				echo $error;
 			}
 		}
+
+		public function add_menus(){
+			//Check if CF7 is installed
+			if ( ! is_plugin_active( 'contact-form-7/wp-contact-form-7.php' ) ) {
+				return;
+			}
+			//Add submenu under CF7 menu
+			add_submenu_page(
+				$this->get_parent_slug(),
+				$this->get_page_title(),
+				$this->get_menu_title(),
+				$this->get_capability(),
+				$this->get_plugin_slug(),
+				array( $this, 'render_page' )
+			);
+        }
 
 
 	}

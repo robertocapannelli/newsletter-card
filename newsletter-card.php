@@ -1,35 +1,52 @@
 <?php
-/*
-Plugin Name: Newsletter Card
-Plugin URI: https://github.com/robertocapannelli/newsletter-card
-Description: WordPress plugin that works with CF7 plugin to show a fancy subscription form on scrolling page
-Version: 2.0.0
-Author: Roberto Capannelli
-Author URI: https://walkap.com
-Text Domain: cf7_nc
-*/
+/**
+ * @link walkap.com
+ * @since 2.0.0
+ * @package Newsletter_Card
+ *
+ * @wordpress-plugin
+ * Plugin Name:       Newsletter card
+ * Plugin URI:        https://github.com/robertocapannelli/newsletter-card
+ * Description:       WordPress plugin that works with CF7 plugin to show a fancy subscription form on scrolling page
+ * Version:           2.0.0
+ * Author:            Roberto Capannelli
+ * Author URI:        https://walkap.com
+ * License:           GPL-2.0+
+ * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ * Text Domain:       newsletter-card
+ * Domain Path:       /languages
+ */
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-// Define CF7_NC_PLUGIN_FILE.
+/**
+ * Current plugin version
+ *
+ * Start at version 2.0.0 and use SemVer - https://semver.org
+ */
+define('NEWSLETTER_CARD_VERSION', '2.0.0');
+
+// Define CF7_NC_PLUGIN_FILE
 if ( ! defined( 'CF7_NC_PLUGIN_FILE' ) ) {
 	define( 'CF7_NC_PLUGIN_FILE', __FILE__ );
 }
 
-if ( ! class_exists( 'CF7_Newsletter_Card' ) ) {
-	include_once dirname( __FILE__ ) . '/inc/class-cf7-newsletter-card.php';
-}
+/**
+ * The core plugin class
+ */
+require plugin_dir_path( __FILE__ ) . 'inc/class-cf7-newsletter-card.php';
 
 /**
- * Create an instance of the plugin
+ * Begins the execution of the plugin
  *
- * @return CF7_Newsletter_Card|null
+ * @since 1.0.0
  */
 function cf7_newsletter_card(){
-	return CF7_Newsletter_Card::instance();
+	$plugin = CF7_Newsletter_Card::instance();
+	$plugin->run();
 }
 
 cf7_newsletter_card();
