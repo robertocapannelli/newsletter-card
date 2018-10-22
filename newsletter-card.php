@@ -17,6 +17,10 @@
  * Domain Path:       /languages
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
 	die;
@@ -37,7 +41,11 @@ if ( ! defined( 'CF7_NC_PLUGIN_FILE' ) ) {
 /**
  * The core plugin class
  */
-require plugin_dir_path( __FILE__ ) . 'inc/class-cf7-newsletter-card.php';
+
+// Include the main Newsletter Card class.
+if ( ! class_exists( 'WooCommerce' ) ) {
+	include_once plugin_dir_path( __FILE__ ) . 'inc/class-cf7-newsletter-card.php';
+}
 
 /**
  * Begins the execution of the plugin

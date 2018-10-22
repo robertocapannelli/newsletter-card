@@ -69,6 +69,7 @@ class CF7_Newsletter_Card {
 		if ( is_null( self::$_instance ) ) { //TODO we are not usign this singleton after introduced the loader
 			self::$_instance = new self();
 		}
+
 		return self::$_instance;
 	}
 
@@ -133,6 +134,8 @@ class CF7_Newsletter_Card {
 	private function define_admin_hooks() {
 		$plugin_admin = new CF7_Nc_Admin_Page();
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_menus' );
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'configure' );
+		$this->loader->add_action( 'admin_notices', $plugin_admin, 'notices' );
 	}
 
 	/**
@@ -156,10 +159,10 @@ class CF7_Newsletter_Card {
 	 * @access private
 	 */
 	private function init_ajax() {
-		$plugin_ajax = new CF7_Newsletter_Card_Ajax($this->get_plugin_name(), $this->get_version());
-		$this->loader->add_action('wp_enqueue_scripts', $plugin_ajax, 'localize_script');
-		$this->loader->add_action('wp_ajax_handle', $plugin_ajax, 'handle');
-		$this->loader->add_action('wp_ajax_nopriv_handle', $plugin_ajax, 'handle');
+		$plugin_ajax = new CF7_Newsletter_Card_Ajax( $this->get_plugin_name(), $this->get_version() );
+		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_ajax, 'localize_script' );
+		$this->loader->add_action( 'wp_ajax_handle', $plugin_ajax, 'handle' );
+		$this->loader->add_action( 'wp_ajax_nopriv_handle', $plugin_ajax, 'handle' );
 	}
 
 	/**

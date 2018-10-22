@@ -17,16 +17,31 @@ if( !class_exists('CF7_Newsletter_Card_Ajax')){
 		 */
 		const NONCE = 'is_hidden_card';
 
+		/**
+		 * Plugin name
+		 *
+		 * @var string
+		 */
 		private $plugin_name;
 
+		/**
+		 * Plugin version
+		 *
+		 * @var string
+		 */
 		private $version;
 
+		/**
+		 * CF7_Newsletter_Card_Ajax constructor.
+		 *
+		 * @param $plugin_name
+		 * @param $version
+		 *
+		 * @since 2.0.0
+		 */
 		public function __construct($plugin_name, $version) {
-
 			$this->plugin_name;
-
 			$this->version;
-
 		}
 
 		/**
@@ -44,21 +59,22 @@ if( !class_exists('CF7_Newsletter_Card_Ajax')){
 
 		/**
 		 * Localize the file where the ajax script is coded
+		 *
+		 * @since 1.0.0
 		 */
 		public function localize_script() {
-
 			$handle      = 'public-script';
 			$list        = 'enqueued';
 			$object_name = 'my_ajax_obj';
-
 			if ( wp_script_is( $handle, $list ) ) {
-				echo 'Script enqueued ';
 				wp_localize_script( $handle, $object_name, $this->get_ajax_data() );
 			}
 		}
 
 		/**
 		 * Handle the ajax request and respond with expiring cookie days
+		 *
+		 * @since 1.0.0
 		 */
 		public function handle() {
 			check_ajax_referer( self::NONCE );
