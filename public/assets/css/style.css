@@ -1,4 +1,4 @@
-.cf7-nc-card-container {
+.newsletter-card-wrapper {
     position: fixed;
     right: 0;
     background: white;
@@ -7,23 +7,32 @@
     width: 100%;
     max-width: 400px;
     z-index: 99999 !important;
+
+
+    -webkit-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
+
 }
 
-.cf7-nc-card-container .cf7-nc-card-wrapper {
+.newsletter-card-wrapper .container {
     position: relative !important;
 }
 
-.cf7-nc-card-container .cf7-nc-card-wrapper .close-button {
+.newsletter-card-wrapper .container .close-button {
     position: absolute !important;
     top: -15px !important;
     right: -8px !important;
     cursor: pointer;
 }
 
-.cf7-nc-card-container .cf7-nc-card-wrapper h4{
+.newsletter-card-wrapper .container h4{
     margin: 0 0 10px;
 }
 
-.cf7-nc-card-container .cf7-nc-card-wrapper p{
+.newsletter-card-wrapper .container p{
     margin: 0 0 10px;
+}
+
+.hidden-fields{
+    display: none;
 }

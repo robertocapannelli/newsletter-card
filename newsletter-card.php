@@ -41,7 +41,7 @@ if ( ! defined( 'NEWSLETTER_CARD_PLUGIN_FILE' ) ) {
 }
 
 if ( ! defined( 'NEWSLETTER_CARD_TEXT_DOMAIN' ) ) {
-	define( 'NEWSLETTER_CARD_TEXT_DOMAIN', 'newsletter_card' ); //TODO this is not working we used cf7_nc before, maybe we need activation hook to create database tables
+	define( 'NEWSLETTER_CARD_TEXT_DOMAIN', 'newsletter_card' );
 }
 
 if ( ! defined( 'NEWSLETTER_CARD_NAME' ) ) {
