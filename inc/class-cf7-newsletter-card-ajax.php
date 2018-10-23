@@ -25,23 +25,14 @@ if( !class_exists('CF7_Newsletter_Card_Ajax')){
 		private $plugin_name;
 
 		/**
-		 * Plugin version
-		 *
-		 * @var string
-		 */
-		private $version;
-
-		/**
 		 * CF7_Newsletter_Card_Ajax constructor.
 		 *
 		 * @param $plugin_name
-		 * @param $version
 		 *
 		 * @since 2.0.0
 		 */
-		public function __construct($plugin_name, $version) {
+		public function __construct( $plugin_name) {
 			$this->plugin_name;
-			$this->version;
 		}
 
 		/**
@@ -87,16 +78,5 @@ if( !class_exists('CF7_Newsletter_Card_Ajax')){
 			wp_die();
 		}
 
-		/**
-		 * Returns the error
-		 *
-		 * @param WP_Error $error
-		 */
-		public function cf7_send_error( WP_Error $error ) {
-			wp_send_json( array(
-				'code'    => $error->get_error_code(),
-				'message' => $error->get_error_message()
-			) );
-		}
 	}
 }

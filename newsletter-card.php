@@ -31,11 +31,33 @@ if ( ! defined( 'WPINC' ) ) {
  *
  * Start at version 2.0.0 and use SemVer - https://semver.org
  */
-define('NEWSLETTER_CARD_VERSION', '2.0.0');
 
-// Define CF7_NC_PLUGIN_FILE
-if ( ! defined( 'CF7_NC_PLUGIN_FILE' ) ) {
-	define( 'CF7_NC_PLUGIN_FILE', __FILE__ );
+if ( ! defined( 'NEWSLETTER_CARD_VERSION' ) ) {
+	define( 'NEWSLETTER_CARD_VERSION', '2.0.0' );
+}
+
+if ( ! defined( 'NEWSLETTER_CARD_PLUGIN_FILE' ) ) {
+	define( 'NEWSLETTER_CARD_PLUGIN_FILE', __FILE__ );
+}
+
+if ( ! defined( 'NEWSLETTER_CARD_TEXT_DOMAIN' ) ) {
+	define( 'NEWSLETTER_CARD_TEXT_DOMAIN', 'newsletter_card' ); //TODO this is not working we used cf7_nc before, maybe we need activation hook to create database tables
+}
+
+if ( ! defined( 'NEWSLETTER_CARD_NAME' ) ) {
+	define( 'NEWSLETTER_CARD_NAME', 'Newsletter Card' );
+}
+
+if ( ! defined( 'NEWSLETTER_CARD_SLUG' ) ) {
+	define( 'NEWSLETTER_CARD_SLUG', 'newsletter-card' );
+}
+
+if ( ! defined( 'NEWSLETTER_CARD_ABSPATH' ) ) {
+	define( 'NEWSLETTER_CARD_ABSPATH', dirname( NEWSLETTER_CARD_PLUGIN_FILE ) );
+}
+
+if ( ! defined( 'NEWSLETTER_CARD_URL' ) ) {
+	define( 'NEWSLETTER_CARD_URL', plugins_url( NEWSLETTER_CARD_SLUG ) );
 }
 
 /**
@@ -52,12 +74,10 @@ if ( ! class_exists( 'WooCommerce' ) ) {
  *
  * @since 1.0.0
  */
-function cf7_newsletter_card(){
-	$plugin = CF7_Newsletter_Card::instance();
-	$plugin->run();
+function newsletter_card() {
+	CF7_Newsletter_Card::instance(NEWSLETTER_CARD_NAME, NEWSLETTER_CARD_SLUG)->run();
 }
-
-cf7_newsletter_card();
+newsletter_card();
 
 //TODO set cookie also when the form is submitted, but with a grater number of days
 //TODO add position left or right
