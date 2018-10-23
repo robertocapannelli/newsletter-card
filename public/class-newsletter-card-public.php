@@ -70,6 +70,10 @@ if ( ! class_exists( 'Newsletter_Card_Public' ) ) {
 			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 			$is_active = is_plugin_active( NEWSLETTER_CARD_ABSPATH . '/newsletter-card.php' );
 
+			if ( ! is_plugin_active( 'contact-form-7/wp-contact-form-7.php' ) ) {
+				return;
+			}
+
 			//Check if a CF7 shortcode is provided and if the plugin is active
 			if ( ! ( $shortcode || $is_active ) || isset( $_COOKIE['is_card_hidden'] ) ) {
 				return;
