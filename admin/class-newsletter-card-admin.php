@@ -1,6 +1,6 @@
 <?php
-if ( ! class_exists( 'CF7_Nc_Admin_Page' ) ) {
-	class CF7_Nc_Admin_Page {
+if ( ! class_exists( 'Newsletter_Card_Admin' ) ) {
+	class Newsletter_Card_Admin {
 
 		//TODO these should be constant
 		private $plugin_slug;
@@ -78,13 +78,13 @@ if ( ! class_exists( 'CF7_Nc_Admin_Page' ) ) {
 
 				echo 'is array and is object';
 
-				if ( ! class_exists( 'CF7_Option_Field' ) ) {
-					include_once NEWSLETTER_CARD_ABSPATH . '/admin/class-cf7-newsletter-card-option-field.php';
+				if ( ! class_exists( 'Newsletter_Card_Option_Field' ) ) {
+					include_once NEWSLETTER_CARD_ABSPATH . '/admin/class-newsletter-card-option-field.php';
 				}
 
 				foreach ( $options as $option ) {
 					register_setting( $this->option_group, $option['option_name'] );
-					$object = new CF7_Option_Field( $option );
+					$object = new Newsletter_Card_Option_Field( $option );
 					$args   = [
 						'type'        => $object->get_type(),
 						'option_name' => $object->get_option_name(),

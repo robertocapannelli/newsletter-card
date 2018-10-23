@@ -1,7 +1,7 @@
 <?php
 
-if(!class_exists('CF7_Option_Field')){
-	class CF7_Option_Field {
+if(!class_exists( 'Newsletter_Card_Option_Field' )){
+	class Newsletter_Card_Option_Field {
 
 		private $option_name;
 		private $type;

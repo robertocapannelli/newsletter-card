@@ -66,7 +66,7 @@ if ( ! defined( 'NEWSLETTER_CARD_URL' ) ) {
 
 // Include the main Newsletter Card class.
 if ( ! class_exists( 'WooCommerce' ) ) {
-	include_once plugin_dir_path( __FILE__ ) . 'inc/class-cf7-newsletter-card.php';
+	include_once plugin_dir_path( __FILE__ ) . 'inc/class-newsletter-card.php';
 }
 
 /**
@@ -75,7 +75,7 @@ if ( ! class_exists( 'WooCommerce' ) ) {
  * @since 1.0.0
  */
 function newsletter_card() {
-	CF7_Newsletter_Card::instance(NEWSLETTER_CARD_NAME, NEWSLETTER_CARD_SLUG)->run();
+	Newsletter_Card::instance(NEWSLETTER_CARD_NAME, NEWSLETTER_CARD_SLUG)->run();
 }
 newsletter_card();
 

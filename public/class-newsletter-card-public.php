@@ -1,7 +1,7 @@
 <?php
 
-if ( ! class_exists( 'CF7_Nc_Public' ) ) {
-	class CF7_Nc_Public {
+if ( ! class_exists( 'Newsletter_Card_Public' ) ) {
+	class Newsletter_Card_Public {
 
 		/**
 		 * The ID of this plugin.

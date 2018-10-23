@@ -1,7 +1,7 @@
 <?php
 
-if( !class_exists('CF7_Newsletter_Card_Ajax')){
-	class CF7_Newsletter_Card_Ajax {
+if( !class_exists( 'Newsletter_Card_Ajax' )){
+	class Newsletter_Card_Ajax {
 
 		/**
 		 * Action hook used by he AJAX class
@@ -44,7 +44,7 @@ if( !class_exists('CF7_Newsletter_Card_Ajax')){
 			return array(
 				'ajax_url' => admin_url( 'admin-ajax.php' ),
 				'action'   => self::ACTION,
-				'nonce'    => wp_create_nonce( CF7_Newsletter_Card_Ajax::NONCE )
+				'nonce'    => wp_create_nonce( Newsletter_Card_Ajax::NONCE )
 			);
 		}
 

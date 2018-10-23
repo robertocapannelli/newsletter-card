@@ -21,7 +21,7 @@
  * @subpackage Newsletter_Card/includes
  * @author     Roberto Capannelli <roberto.capannelli@gmail.com>
  */
-class CF7_Nc_Loader {
+class Newsletter_Card_Loader {
 
 	/**
 	 * The array of actions registered with WordPress.

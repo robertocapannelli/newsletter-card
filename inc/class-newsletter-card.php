@@ -1,7 +1,7 @@
 <?php
 
-if(!class_exists('CF7_Newsletter_Card')){
-	class CF7_Newsletter_Card {
+if(!class_exists( 'Newsletter_Card' )){
+	class Newsletter_Card {
 
 		/**
 		 * The loader that's responsible for maintaining and registering all hooks that power
@@ -9,7 +9,7 @@ if(!class_exists('CF7_Newsletter_Card')){
 		 *
 		 * @since    2.0.0
 		 * @access   protected
-		 * @var      CF7_Nc_Loader $loader Maintains and registers all hooks for the plugin.
+		 * @var      Newsletter_Card_Loader $loader Maintains and registers all hooks for the plugin.
 		 */
 		protected $loader;
 
@@ -71,7 +71,7 @@ if(!class_exists('CF7_Newsletter_Card')){
 		 * @param $plugin_slug
 		 *
 		 * @since 2.0.0
-		 * @return CF7_Newsletter_Card|null
+		 * @return Newsletter_Card|null
 		 */
 		public static function instance($plugin_name, $plugin_slug) {
 			if ( is_null( self::$_instance ) ) {
@@ -96,11 +96,11 @@ if(!class_exists('CF7_Newsletter_Card')){
 		 * @access   private
 		 */
 		private function load_dependencies() {
-			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'inc/class-cf7-newsletter-card-loader.php';
-			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cf7-newsletter-card-admin-page.php';
-			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cf7-newsletter-card-public.php';
-			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'inc/class-cf7-newsletter-card-ajax.php';
-			$this->loader = new CF7_Nc_Loader();
+			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'inc/class-newsletter-card-loader.php';
+			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-newsletter-card-admin.php';
+			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-newsletter-card-public.php';
+			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'inc/class-newsletter-card-ajax.php';
+			$this->loader = new Newsletter_Card_Loader();
 		}
 
 		/**
@@ -111,7 +111,7 @@ if(!class_exists('CF7_Newsletter_Card')){
 		 * @access   private
 		 */
 		private function define_admin_hooks() {
-			$plugin_admin = new CF7_Nc_Admin_Page($this->get_plugin_name() , $this->get_plugin_slug() );
+			$plugin_admin = new Newsletter_Card_Admin($this->get_plugin_name() , $this->get_plugin_slug() );
 			$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_menus' );
 			$this->loader->add_action( 'admin_init', $plugin_admin, 'configure' );
 			$this->loader->add_action( 'admin_notices', $plugin_admin, 'notices' );
@@ -125,7 +125,7 @@ if(!class_exists('CF7_Newsletter_Card')){
 		 * @access   private
 		 */
 		private function define_public_hooks() {
-			$plugin_public = new CF7_Nc_Public( $this->get_plugin_name(), $this->get_version() );
+			$plugin_public = new Newsletter_Card_Public( $this->get_plugin_name(), $this->get_version() );
 			$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 			$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 			$this->loader->add_action( 'wp_footer', $plugin_public, 'render_content' );
@@ -138,7 +138,7 @@ if(!class_exists('CF7_Newsletter_Card')){
 		 * @access private
 		 */
 		private function init_ajax() {
-			$plugin_ajax = new CF7_Newsletter_Card_Ajax( $this->get_plugin_name() );
+			$plugin_ajax = new Newsletter_Card_Ajax( $this->get_plugin_name() );
 			$this->loader->add_action( 'wp_enqueue_scripts', $plugin_ajax, 'localize_script' );
 			$this->loader->add_action( 'wp_ajax_handle', $plugin_ajax, 'handle' );
 			$this->loader->add_action( 'wp_ajax_nopriv_handle', $plugin_ajax, 'handle' );
