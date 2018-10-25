@@ -139,10 +139,10 @@ if ( ! class_exists( 'Newsletter_Card_Admin' ) ) {
 
 			//TODO this is shit like this
 			$input    = <<<HTML
-        <input type="$type" $range name="$option_name" value="$value" $required>
+        <input type='$type' $range name='$option_name' value='$value' $required>
 HTML;
 			$textarea = <<<HTML
-        <textarea name="$option_name" $required>$value</textarea>
+        <textarea name='$option_name' $required>$value</textarea>
 HTML;
 			switch ( $args['type'] ) {
 				case 'date':
