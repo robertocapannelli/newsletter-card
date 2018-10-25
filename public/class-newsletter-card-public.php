@@ -51,8 +51,8 @@ if ( ! class_exists( 'Newsletter_Card_Public' ) ) {
 		public function enqueue_scripts() {
 			//Register scripts
 			wp_register_script( 'public-script', plugin_dir_url( __FILE__ ) . 'assets/js/main.js', array( 'jquery' ), $this->version, true );
-			wp_register_script( 'jquery-validation', plugins_url( NEWSLETTER_CARD_SLUG ) . '/bower_components/jquery-validation/dist/jquery.validate.js', array( 'jquery' ), '1.18.0', true );
-			wp_register_script( 'jquery-validation-additional', plugins_url( NEWSLETTER_CARD_SLUG ) . '/bower_components/jquery-validation/dist/additional-methods.js', array( 'jquery' ), '1.18.0', true );
+			wp_register_script( 'jquery-validation', plugin_dir_url( __FILE__ ) . 'assets/js/jquery.validate.js', array( 'jquery' ), '1.18.0', true );
+			wp_register_script( 'jquery-validation-additional', plugin_dir_url( __FILE__ ) . 'assets/js/additional-methods.js', array( 'jquery' ), '1.18.0', true );
 
 			//Enqueue scripts
 			wp_enqueue_script( 'public-script' );
