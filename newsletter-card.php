@@ -65,7 +65,7 @@ if ( ! defined( 'NEWSLETTER_CARD_URL' ) ) {
  */
 
 // Include the main Newsletter Card class.
-if ( ! class_exists( 'WooCommerce' ) ) {
+if ( ! class_exists( 'Newsletter_Card' ) ) {
 	include_once plugin_dir_path( __FILE__ ) . 'inc/class-newsletter-card.php';
 }
 
@@ -79,6 +79,8 @@ function newsletter_card() {
 }
 newsletter_card();
 
+//TODO we should think to submit the form also with enter button
+//TODO we should use some package manager to compile scripts and styles
 //TODO set cookie also when the form is submitted, but with a grater number of days
 //TODO add position left or right
 //TODO add style for background and color font
