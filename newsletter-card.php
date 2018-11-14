@@ -1,7 +1,7 @@
 <?php
 /**
  * @link walkap.com
- * @since 2.0.0
+ * @since 2.1.2
  * @package Newsletter_Card
  *
  * @wordpress-plugin
