@@ -103,13 +103,13 @@ function closeCard() {
  */
 function submitForm() {
     var i = 0;
-    var form = $('.newsletter-card-wrapper #newsletter');
-    var button = $('.newsletter-card-wrapper #newsletter button');
-    var email = $('.newsletter-card-wrapper #newsletter #email');
-    var hidden_fields = $('.newsletter-card-wrapper #newsletter .hidden-fields');
+    var form = $('.newsletter-card-wrapper .wpcf7-form');
+    var button = $('.newsletter-card-wrapper .wpcf7-form button');
+    var email = $('.newsletter-card-wrapper .wpcf7-form #email');
+    var hidden_fields = $('.newsletter-card-wrapper .wpcf7-form .hidden-fields');
     var validator = form.validate({
         rules: {
-            email: {
+            your_email: {
                 required: true,
                 email: true
             }
@@ -119,7 +119,7 @@ function submitForm() {
         validator.element('#email');
         console.log('Button clicked');
         if (email.hasClass('valid')) {
-            i++;
+            i++; //TODO we could a class to add to one of the element instead of incrementing an index
             hidden_fields.show('slow');
         }
         if (i > 1) {
@@ -130,7 +130,8 @@ function submitForm() {
 
             alert('setting cookie');
 
-            setCookie(cname, cvalue, exdays);
+            //TODO check if the form is valid anche the email has been set successfully before set cookie
+            /*setCookie(cname, cvalue, exdays);*/
         }
     });
 }
