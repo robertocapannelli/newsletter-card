@@ -76,8 +76,6 @@ if ( ! class_exists( 'Newsletter_Card_Admin' ) ) {
 
 			if ( is_array( $options ) || is_object( $options ) ) {
 
-				echo 'is array and is object';
-
 				if ( ! class_exists( 'Newsletter_Card_Option_Field' ) ) {
 					include_once NEWSLETTER_CARD_ABSPATH . '/admin/class-newsletter-card-option-field.php';
 				}
