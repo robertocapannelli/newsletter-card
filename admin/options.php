@@ -3,29 +3,24 @@
 $html = <<<HTML
 
 <div class="field">
-  <label for="email">Email*</label>
-  [email* your_email id:email]
-</div>
-
-<div class="hidden-fields">
-  <div class="field">
-    <label for="name">Name</label>
-    [text your-name id:name placeholder "Your name"]
-  </div>
-  
-  <div class="field">
-    <label for="last-name">Last Name</label>
-    [text last-name id:last-name placeholder "Your last name"]
-  </div>
-
-  <div class="field">
-    <label for="gender">Gender</label>
-    [select gender id:gender include_blank "Male" "Female" "Other"]
-  </div>
-
-</div>
-
-<button type="button" class="submit-button">Register</button>
+  <label for="email">Email*</label> 
+  [email* your_email id:email] 
+</div> 
+<div class="hidden-fields"> 
+   <div class="field"> 
+      <label for="name">Name</label> 
+      [text your-name id:name placeholder "Your name"] 
+   </div> 
+   <div class="field"> 
+      <label for="last-name">Last Name</label> 
+      [text last-name id:last-name placeholder "Your last name"] 
+   </div> 
+   <div class="field"> 
+      <label for="gender">Gender</label> 
+      [select gender id:gender include_blank "Male" "Female" "Other"] 
+   </div> 
+</div> 
+<button type="button" id="submit-form" class="submit-button">Register</button>
 
 HTML;
 
