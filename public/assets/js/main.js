@@ -1,24 +1,28 @@
 const $ = jQuery.noConflict();
-const container = $('.newsletter-card-wrapper');
+const container = $('#newsletter-card-wrapper');
+const cname = 'is_card_hidden';
+const maxExDays = 1000;
 
 /**
- * Reset a previous cookie
- * @param cname - Cookie name
+ * Hide the newsletter card calculating the container height
+ * dynamically
  *
  * @since 1.0.0
  */
-function resetCookie(cname) {
-    document.cookie = cname + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+function hideCard() {
+    var height = container.outerHeight();
+    container.animate({bottom: -(height) + 'px'});
 }
 
 /**
- * Init the newsletter card hide in the bottom
+ * Close the newsletter card on close button click and set cookie
  *
  * @since 1.0.0
  */
-function init() {
-    var height = container.outerHeight();
-    container.animate({bottom: -(height) + 'px'});
+function closeCard() {
+    //On click close card and set cookie to hide the card in next 7 days
+    container.css('display', 'none');
+    setExDays();
 }
 
 /**
@@ -35,13 +39,23 @@ function openCard() {
         var isVisible = false;
         //On scroll show the card
         $(window).scroll(function () {
-            var currentPosition = jQuery(this).scrollTop();
+            var currentPosition = $(this).scrollTop();
             if (currentPosition > bound && !isVisible) {
                 container.animate({bottom: "0"}, 300, 'linear');
                 isVisible = true;
             }
         });
     }
+}
+
+/**
+ * Reset a previous cookie
+ * @param cname - Cookie name
+ *
+ * @since 1.0.0
+ */
+function resetCookie(cname) {
+    document.cookie = cname + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
 }
 
 /**
@@ -53,46 +67,35 @@ function openCard() {
  * @since 1.0.0
  */
 function setCookie(cname, cvalue, exdays) {
-    console.log('set coookie');
-    var d = new Date();
+    var d;
+    var expires;
+
+    d = new Date();
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-    var expires = "expires=" + d.toUTCString();
+    expires = "expires=" + d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
 /**
  * Get expiration days with ajax
  *
- * @param cname - Cookie name (i.e. is_card_hidden)
- * @param cvalue - Cookie value (i.e. true)
  *
  * @since 1.0.0
  */
-function getExdays(cname, cvalue) {
+function setExDays() {
     var data = {
         'action': my_ajax_obj.action,
         '_ajax_nonce': my_ajax_obj.nonce,
         'title': this.title
     };
+
     $.post(
         my_ajax_obj.ajax_url,
         data,
         function (response) {
-            setCookie(cname, cvalue, response);
-        });
-}
-
-/**
- * Close the newsletter card on close button click and set cookie
- *
- * @since 1.0.0
- */
-function closeCard() {
-    //On click close card and set cookie to hide the card in next 7 days
-    container.css('display', 'none');
-    var key = 'is_card_hidden';
-    var value = 'true';
-    getExdays(key, value);
+            setCookie(cname, true, response)
+        }
+    )
 }
 
 /**
@@ -103,10 +106,11 @@ function closeCard() {
  */
 function submitForm() {
     var i = 0;
-    var form = $('.newsletter-card-wrapper .wpcf7-form');
-    var button = $('.newsletter-card-wrapper .wpcf7-form button');
-    var email = $('.newsletter-card-wrapper .wpcf7-form #email');
-    var hidden_fields = $('.newsletter-card-wrapper .wpcf7-form .hidden-fields');
+    var form = $('#newsletter-card-wrapper .wpcf7-form');
+    var button = $('#newsletter-card-wrapper #submit-form');
+    var email = $('#newsletter-card-wrapper #email');
+    var hidden_fields = $('#newsletter-card-wrapper .hidden-fields');
+
     var validator = form.validate({
         rules: {
             your_email: {
@@ -117,27 +121,25 @@ function submitForm() {
     });
     button.click(function () {
         validator.element('#email');
-        console.log('Button clicked');
         if (email.hasClass('valid')) {
-            i++; //TODO we could a class to add to one of the element instead of incrementing an index
             hidden_fields.show('slow');
+            i++;
+
         }
         if (i > 1) {
             form.submit();
-            var cname = 'is_card_hidden';
-            var cvalue = true;
-            var exdays = 30;
-
-            alert('setting cookie');
-
-            //TODO check if the form is valid anche the email has been set successfully before set cookie
-            /*setCookie(cname, cvalue, exdays);*/
         }
     });
+    document.addEventListener('wpcf7mailsent', function (event) {
+        let width = container.outerWidth();
+
+        setCookie(cname, true, maxExDays);
+        container.animate({right: -(width) + 'px'});
+    }, false);
 }
 
 $(document).ready(function () {
-    init();
+    hideCard();
     openCard();
     $(' .close-button').click(function () {
         closeCard();
