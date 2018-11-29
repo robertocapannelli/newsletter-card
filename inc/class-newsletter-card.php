@@ -1,6 +1,6 @@
 <?php
 
-if(!class_exists( 'Newsletter_Card' )){
+if ( ! class_exists( 'Newsletter_Card' ) ) {
 	class Newsletter_Card {
 
 		/**
@@ -57,9 +57,19 @@ if(!class_exists( 'Newsletter_Card' )){
 
 			$this->load_dependencies();
 			$this->define_admin_hooks();
-			$this->define_public_hooks();
-			$this->init_ajax();
 
+			$shortcode = get_option( NEWSLETTER_CARD_TEXT_DOMAIN . '_shortcode' );
+			//Needed to invoke is_plugin_active
+			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+			$is_active     = is_plugin_active( 'newsletter-card/newsletter-card.php' );
+			$is_cf7_active = is_plugin_active( 'contact-form-7/wp-contact-form-7.php' );
+
+			if($is_cf7_active && $is_active){
+				if ( $shortcode && ! isset( $_COOKIE['is_card_hidden'] ) ) {
+					$this->define_public_hooks();
+					$this->init_ajax();
+				}
+			}
 		}
 
 		/**
@@ -73,10 +83,11 @@ if(!class_exists( 'Newsletter_Card' )){
 		 * @since 2.0.0
 		 * @return Newsletter_Card|null
 		 */
-		public static function instance($plugin_name, $plugin_slug) {
+		public static function instance( $plugin_name, $plugin_slug ) {
 			if ( is_null( self::$_instance ) ) {
 				self::$_instance = new self( $plugin_name, $plugin_slug );
 			}
+
 			return self::$_instance;
 		}
 
@@ -111,7 +122,7 @@ if(!class_exists( 'Newsletter_Card' )){
 		 * @access   private
 		 */
 		private function define_admin_hooks() {
-			$plugin_admin = new Newsletter_Card_Admin($this->get_plugin_name() , $this->get_plugin_slug() );
+			$plugin_admin = new Newsletter_Card_Admin( $this->get_plugin_name(), $this->get_plugin_slug() );
 			$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_menus' );
 			$this->loader->add_action( 'admin_init', $plugin_admin, 'configure' );
 			$this->loader->add_action( 'admin_notices', $plugin_admin, 'notices' );
@@ -174,7 +185,7 @@ if(!class_exists( 'Newsletter_Card' )){
 			return $this->version;
 		}
 
-		private function get_plugin_slug(){
+		private function get_plugin_slug() {
 			return $this->plugin_slug;
 		}
 
