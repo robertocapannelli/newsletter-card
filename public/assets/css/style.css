@@ -1,4 +1,4 @@
-.newsletter-card-wrapper {
+#newsletter-card-wrapper {
     position: fixed;
     right: 0;
     background: white;
@@ -7,32 +7,30 @@
     width: 100%;
     max-width: 400px;
     z-index: 99999 !important;
-
-
     -webkit-transition: all 1s ease-in-out;
     transition: all 1s ease-in-out;
 
 }
 
-.newsletter-card-wrapper .container {
+#newsletter-card-wrapper .container {
     position: relative !important;
 }
 
-.newsletter-card-wrapper .container .close-button {
+#newsletter-card-wrapper .container .close-button {
     position: absolute !important;
     top: -15px !important;
     right: -8px !important;
     cursor: pointer;
 }
 
-.newsletter-card-wrapper .container h4{
+#newsletter-card-wrapper .container h4{
     margin: 0 0 10px;
 }
 
-.newsletter-card-wrapper .container p{
+#newsletter-card-wrapper .container p{
     margin: 0 0 10px;
 }
 
-.hidden-fields{
+#newsletter-card-wrapper .hidden-fields{
     display: none;
 }
