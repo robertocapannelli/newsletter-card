@@ -1,14 +1,13 @@
 <?php
 /**
  * @link walkap.com
- * @since 2.1.2
  * @package Newsletter_Card
  *
  * @wordpress-plugin
  * Plugin Name:       Newsletter card
  * Plugin URI:        https://github.com/robertocapannelli/newsletter-card
  * Description:       WordPress plugin that works with CF7 plugin to show a fancy subscription form on scrolling page
- * Version:           2.0.0
+ * Version:           2.1.3
  * Author:            Roberto Capannelli
  * Author URI:        https://walkap.com
  * License:           GPL-2.0+
@@ -33,7 +32,7 @@ if ( ! defined( 'WPINC' ) ) {
  */
 
 if ( ! defined( 'NEWSLETTER_CARD_VERSION' ) ) {
-	define( 'NEWSLETTER_CARD_VERSION', '2.0.0' );
+	define( 'NEWSLETTER_CARD_VERSION', '2.1.3' );
 }
 
 if ( ! defined( 'NEWSLETTER_CARD_PLUGIN_FILE' ) ) {
@@ -81,9 +80,8 @@ newsletter_card();
 
 //TODO we should think to submit the form also with enter button
 //TODO we should use some package manager to compile scripts and styles
-//TODO set cookie also when the form is submitted, but with a grater number of days
 //TODO add position left or right
 //TODO add style for background and color font
 //TODO add custom css field
-//TODO these changes could be done by a JSON so we just use ajax one time not storing data as json but call with php and serve to the front end with ajax
+//TODO these changes could be done by a JSON so we just use ajax one time not storing data as json but call with php and serve to the front end with ajax. What???
 //TODO exclude pages?
