@@ -1,4 +1,4 @@
-<div class="newsletter-card-wrapper">
+<div class="newsletter-card-wrapper" id="newsletter-card-wrapper">
     <div class="container">
 		<?php if ( get_option( NEWSLETTER_CARD_TEXT_DOMAIN . '_title' ) ) { ?>
             <div class="header">
