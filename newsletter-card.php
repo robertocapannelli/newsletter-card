@@ -32,7 +32,7 @@ if ( ! defined( 'WPINC' ) ) {
  */
 
 if ( ! defined( 'NEWSLETTER_CARD_VERSION' ) ) {
-	define( 'NEWSLETTER_CARD_VERSION', '2.1.3' );
+	define( 'NEWSLETTER_CARD_VERSION', '3.0.0' );
 }
 
 if ( ! defined( 'NEWSLETTER_CARD_PLUGIN_FILE' ) ) {
@@ -77,11 +77,3 @@ function newsletter_card() {
 	Newsletter_Card::instance(NEWSLETTER_CARD_NAME, NEWSLETTER_CARD_SLUG)->run();
 }
 newsletter_card();
-
-//TODO we should think to submit the form also with enter button
-//TODO we should use some package manager to compile scripts and styles
-//TODO add position left or right
-//TODO add style for background and color font
-//TODO add custom css field
-//TODO these changes could be done by a JSON so we just use ajax one time not storing data as json but call with php and serve to the front end with ajax. What???
-//TODO exclude pages?

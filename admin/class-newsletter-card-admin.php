@@ -2,7 +2,6 @@
 if ( !class_exists( 'Newsletter_Card_Admin' ) ) {
     class Newsletter_Card_Admin {
 
-        //TODO these should be constant
         private $plugin_slug;
         private $plugin_name;
         private $capability;
@@ -47,7 +46,10 @@ if ( !class_exists( 'Newsletter_Card_Admin' ) ) {
                 $this->get_menu_title(),
                 $this->get_capability(),
                 $this->get_plugin_slug(),
-                [$this, 'render_page']
+                [
+                    $this,
+                    'render_page'
+                ]
             );
         }
 
@@ -80,10 +82,10 @@ if ( !class_exists( 'Newsletter_Card_Admin' ) ) {
                 foreach ( $options as $option ) {
                     register_setting( $this->option_group, $option['option_name'] );
                     $object = new Newsletter_Card_Option_Field( $option );
-                    $args = [
-                        'type' => $object->get_type(),
+                    $args   = [
+                        'type'        => $object->get_type(),
                         'option_name' => $object->get_option_name(),
-                        'hint' => $object->get_hint(),
+                        'hint'        => $object->get_hint(),
                         'is_required' => $object->is_required()
                     ];
 
@@ -91,7 +93,10 @@ if ( !class_exists( 'Newsletter_Card_Admin' ) ) {
                     add_settings_field(
                         $object->get_field_id(),
                         $object->get_field_title(),
-                        [$this, 'render_option_field'],
+                        [
+                            $this,
+                            'render_option_field'
+                        ],
                         $this->get_plugin_slug(),
                         $object->get_section(),
                         $args );
@@ -124,16 +129,15 @@ if ( !class_exists( 'Newsletter_Card_Admin' ) ) {
          * @since 1.0.0
          */
         public function render_option_field( $args ) {
-            $value = get_option( $args['option_name'] );
-            $type = esc_attr( $args['type'] );
+            $value       = get_option( $args['option_name'] );
+            $type        = esc_attr( $args['type'] );
             $option_name = esc_attr( $args['option_name'] );
-            $hint = $args['hint'];
+            $hint        = $args['hint'];
 
             $required = ( $args['is_required'] == true ) ? esc_attr( 'required' ) : '';
-            $range = ( $type == 'number' ) ? 'min="0"' : '';
+            $range    = ( $type == 'number' ) ? 'min="0"' : '';
 
-            //TODO this is shit like this
-            $input = <<<HTML
+            $input    = <<<HTML
         <input type='$type' $range name='$option_name' value='$value' $required>
 HTML;
             $textarea = <<<HTML
