@@ -12,22 +12,22 @@
 
 }
 
-#newsletter-card-wrapper .container {
+#newsletter-card-wrapper .newsletter-card-container {
     position: relative !important;
 }
 
-#newsletter-card-wrapper .container .close-button {
+#newsletter-card-wrapper .newsletter-card-container .close-button {
     position: absolute !important;
     top: -15px !important;
     right: -8px !important;
     cursor: pointer;
 }
 
-#newsletter-card-wrapper .container h4{
+#newsletter-card-wrapper .newsletter-card-container h4{
     margin: 0 0 10px;
 }
 
-#newsletter-card-wrapper .container p{
+#newsletter-card-wrapper .newsletter-card-container p{
     margin: 0 0 10px;
 }
 
