@@ -12,15 +12,8 @@ if ( !class_exists( 'Newsletter_Card_Option_Field' ) ) {
         private $hint;
 
         /**
-         * Option_Field constructor.
-         *
-         * @param $option_name
-         * @param $type
-         * @param $section
-         * @param $field_id
-         * @param $field_title
-         * @param $is_required
-         * @param $hint
+         * Newsletter_Card_Option_Field constructor.
+         * @param $array
          */
         public function __construct( $array ) {
             $this->option_name = $array['option_name'];
