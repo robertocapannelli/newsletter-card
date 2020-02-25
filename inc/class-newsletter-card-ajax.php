@@ -25,7 +25,7 @@ if( !class_exists( 'Newsletter_Card_Ajax' )){
 		private $plugin_name;
 
 		/**
-		 * CF7_Newsletter_Card_Ajax constructor.
+		 * Newsletter_Card_Ajax constructor.
 		 *
 		 * @param $plugin_name
 		 *
@@ -70,7 +70,7 @@ if( !class_exists( 'Newsletter_Card_Ajax' )){
 		public function handle() {
 			check_ajax_referer( self::NONCE );
 			$exdays = 2;
-			$option = 'cf7_nc_exdays';
+			$option = 'newsletter_card_exdays';
 			if ( get_option( $option ) ) {
 				$exdays = intval( get_option( $option ) );
 			}

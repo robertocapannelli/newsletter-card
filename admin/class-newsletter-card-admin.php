@@ -14,7 +14,7 @@ if ( !class_exists( 'Newsletter_Card_Admin' ) ) {
         private $parent_slug;
 
         /**
-         * CF7_Nc_Admin_Page constructor.
+         * Newsletter_Card_Admin_Page constructor.
          *
          * @param $plugin_name
          * @param $plugin_slug
@@ -36,14 +36,11 @@ if ( !class_exists( 'Newsletter_Card_Admin' ) ) {
         }
 
         /**
-         * Add menu to admin sidebar if the Contact form 7 plugin is installed and activated
+         * Add menu to admin sidebar under tools menu
          *
          * @since 1.0.0
          */
         public function add_menus() {
-            if ( ! is_plugin_active( 'contact-form-7/wp-contact-form-7.php' ) ) {
-                return;
-            }
             add_submenu_page(
                 $this->get_parent_slug(),
                 $this->get_page_title(),
@@ -163,7 +160,7 @@ HTML;
         }
 
         /**
-         * Display notices checking if CF7 plugin is installed and is active
+         * Display notices
          *
          * @since 1.0.0
          */

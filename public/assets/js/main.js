@@ -105,6 +105,7 @@ function setExDays() {
  * @since 2.0.0
  */
 function submitForm() {
+    //TODO This is too specific for a general purpose plugin we should rethink or eliminate
     var i = 0;
     var form = $('#newsletter-card-wrapper .wpcf7-form');
     var button = $('#newsletter-card-wrapper #submit-form');
