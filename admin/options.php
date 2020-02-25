@@ -38,7 +38,7 @@ return [
 							this field should be mandatory<br>
 							2) All other fields should be wrapped inside a div with class "hidden-fields" like <b><code>' . htmlentities( '<div class="hidden-fields">...</div>' ) . '</code></b><br>
 							3) At the end of the content copy and paste this tag <b><code>' . htmlentities( '<button type="button">Register</button>' ) . '</code></b><br>
-							<h3>Complete Example</h3><code>' . htmlentities( $html ) . '</code>'
+							<h3>Complete Example with a CF7 form to have the double step effect</h3><code>' . htmlentities( $html ) . '</code>'
     ],
     [
         'option_name' => 'newsletter_card_title',
