@@ -135,18 +135,17 @@ if ( !class_exists( 'Newsletter_Card_Admin' ) ) {
             $hint        = $args['hint'];
 
             $required = ( $args['is_required'] == true ) ? esc_attr( 'required' ) : '';
-            $range    = ( $type == 'number' ) ? 'min="0"' : '';
 
             $input    = <<<HTML
-        <input type='$type' $range name='$option_name' value='$value' $required>
+            <input type='$type' name='$option_name' value='$value' $required>
 HTML;
             $textarea = <<<HTML
-        <textarea name='$option_name' $required>$value</textarea>
+            <textarea name='$option_name' $required>$value</textarea>
 HTML;
+
             switch ( $args['type'] ) {
                 case 'date':
                 case 'color':
-                case 'checkbox':
                 case 'password':
                 case 'number':
                 case 'email':

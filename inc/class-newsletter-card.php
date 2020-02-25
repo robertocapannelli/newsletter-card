@@ -63,6 +63,8 @@ if ( !class_exists( 'Newsletter_Card' ) ) {
             include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
             $is_active = is_plugin_active( 'newsletter-card/newsletter-card.php' );
 
+            //TODO check if is home
+
             if ( $is_active ) {
                 if ( $shortcode && !isset( $_COOKIE['is_card_hidden'] ) ) {
                     $this->define_public_hooks();
